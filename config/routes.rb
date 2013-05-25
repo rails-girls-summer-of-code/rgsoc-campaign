@@ -6,6 +6,7 @@ Rgsoc::Application.routes.draw do
   match 'geo_ip.json', to: GeoIP.new
 
   resources :donations do
+    post 'checkout', on: :collection
     get 'confirm', on: :member
   end
 

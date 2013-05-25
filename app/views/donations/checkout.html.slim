@@ -1,0 +1,71 @@
+= simple_form_for donation do |f|
+  = f.hidden_field :package
+  = f.hidden_field :amount
+  = f.hidden_field :stripe_card_token
+
+  h2 RailsGirls Summer of Code
+
+  p You are about to donate #{format_donation(donation)} to the RailsGirls Summer of Code.
+
+  p That is amazing! Thank you so much, we love you :)
+
+  - if donation.errors[:base].any?
+    .application-error
+      - donation.errors[:base].each do |e|
+        = e
+
+  - if company?
+    #address
+      h3 Your address
+      p Please provide your address so we can email you a billing receipt.
+      fieldset
+        = f.input :name, required: true
+        = f.input :email, required: true
+      fieldset
+        = f.input :address, required: true
+        = f.input :zip, required: true
+        = f.input :city, required: true
+        = f.input :state
+        = f.input :country, required: true
+
+  - else
+    #user
+      h3 About you
+      p We'd love to list you on the crowdfunding page. Please provide some info:
+      fieldset
+        = f.input :name
+        = f.input :email
+        = f.input :twitter_handle, label: 'Twitter', hint: 'Your Twitter handle', input_html: { placeholder: '@' }
+        = f.input :github_handle,  label: 'Github',  hint: 'Your Github handle'
+        = f.input :homepage, input_html: { placeholder: 'http://' }
+
+  - if needs_vat?
+    = f.hidden_field :add_vat, value: true
+    #vat
+      h3 Tax Info
+      p.note
+        | If your company is based in the EU, please provide your VAT identification number, so we can avoid a 19% taxation.
+      fieldset
+        = f.input :vat_id, required: company?, label: 'VAT ID'
+
+    #vat-germany
+      p.note
+        | Since you're from Germany, we are required by law to pay a 19% VAT on
+          your payment. For private donors we are willing to pay this tax.
+          However, since you're able to deduct German VAT, we will simply add the 19% to the invoice.
+      p#vat_note
+       | You will be charged <em>#{number_to_currency(donation.amount_with_vat_in_dollars)}</em>.
+
+  .actions
+    = f.submit 'Donate now'
+    .message
+
+  ul.footnotes
+    li
+      | As far as we know contributions and payments to the RailsGirls Summer of
+        Code are not deductible as charitable contributions for federal income
+        tax purposes. However, they may be deductible under other provisions of
+        the Internal Revenue Code (for US) or your local tax authority's advice.
+
+
+

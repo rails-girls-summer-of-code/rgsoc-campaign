@@ -9,12 +9,12 @@ EU = [
 DonationForm = (form) ->
   @form = form
 
-  country = $('#donation_address_attributes_country')
-  city    = $('#donation_address_attributes_city')
+  country = $('#donation_country')
+  city    = $('#donation_city')
 
   if country.length > 0
     $.getJSON '/geo_ip.json', (data) =>
-      data.country_name = 'Belgium'
+      console.log data
       city.val(data.city)            if city.val() == ''
       country.val(data.country_name) if country.val() == ''
       @setupVAT country.val()
@@ -27,12 +27,14 @@ DonationForm = (form) ->
     @setupVAT country.val()
 
   form.submit =>
-    if !$('#user_stripe_card_token').val()
-      @processCard()
-      false
-    else
-      @disable('Submitting ...')
-      true
+    # if !$('#user_stripe_card_token').val()
+    #   @processCard()
+    #   false
+    # else
+    #   @disable('Submitting ...')
+    #   true
+    @disable('Submitting ...')
+    true
 
 $.extend DonationForm.prototype,
   toggleSection: (name, onoff) ->
@@ -48,24 +50,24 @@ $.extend DonationForm.prototype,
     @toggleSection "#vat-germany", country == 'Germany'
     @toggleSection '#vat', EU.indexOf(country) > -1
 
-  processCard: ->
-    @disable('Validating your credit card ...')
-    card =
-      name: $('#donation_card_name').val()
-      number: $('#donation_card_number').val()
-      cvc: $('#donation_card_cvc').val()
-      expMonth: $('#card_month').val()
-      expYear: $('#card_year').val()
-    Stripe.createToken(card, @handleStripeResponse.bind(@))
+  # processCard: ->
+  #   @disable('Validating your credit card ...')
+  #   card =
+  #     name: $('#donation_card_name').val()
+  #     number: $('#donation_card_number').val()
+  #     cvc: $('#donation_card_cvc').val()
+  #     expMonth: $('#card_month').val()
+  #     expYear: $('#card_year').val()
+  #   Stripe.createToken(card, @handleStripeResponse.bind(@))
 
-  handleStripeResponse: (status, response) ->
-    if status == 200
-      @disable('Submitting ...')
-      $('#user_stripe_card_token').val(response.id)
-      @form[0].submit()
-    else
-      @enable()
-      $('#stripe_error').text(response.error.message)
+  # handleStripeResponse: (status, response) ->
+  #   if status == 200
+  #     @disable('Submitting ...')
+  #     $('#user_stripe_card_token').val(response.id)
+  #     @form[0].submit()
+  #   else
+  #     @enable()
+  #     $('#stripe_error').text(response.error.message)
 
   disable: (message)->
     $('input[type=submit]').attr('disabled', true)
@@ -84,9 +86,9 @@ $(document).ready ->
   Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
   $('#new_donation').donationForm()
 
-  $('.hint').closest('.input').find('input, textarea').tipsy
-    gravity: 'w'
-    offset: 5
-    delayIn: 100
-    title: ->
-      $(this).parent().find('.hint').html()
+  # $('.hint').closest('.input').find('input, textarea').tipsy
+  #   gravity: 'w'
+  #   offset: 5
+  #   delayIn: 100
+  #   title: ->
+  #     $(this).parent().find('.hint').html()

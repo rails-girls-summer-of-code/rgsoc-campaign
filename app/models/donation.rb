@@ -1,25 +1,10 @@
 class Donation < ActiveRecord::Base
-  belongs_to :user
-  has_one :address
-
-  attr_accessible :stripe_token, :stripe_id, :package, :amount, :subscription, :comment, :message,
-    :vat_id, :add_vat, :address_attributes
-
-  accepts_nested_attributes_for :user, :address
-
-  validates_presence_of :package
-
-  before_validation do
-    self.amount = package.price unless read_attribute(:amount)
-  end
+  attr_accessible :stripe_card_token, :stripe_customer_id, :package, :amount, :vat_id, :add_vat, :display,
+    :name, :email, :address, :zip, :city, :state, :country, :twitter_handle, :github_handle, :homepage
 
   class << self
     def total
       sum(:amount).to_f / 100
-    end
-
-    def active
-      where(active: true)
     end
 
     def stats
@@ -28,38 +13,70 @@ class Donation < ActiveRecord::Base
     end
   end
 
-  attr_accessor :card_number
-
-  def package
-    @package ||= Package.new(read_attribute(:package), read_attribute(:amount), subscription?)
+  def twitter_handle=(name)
+    write_attribute(:twitter_handle, "@#{name.to_s.gsub(/^@/, '')}")
   end
 
-  def amount
-    read_attribute(:amount) || package.price
+  def homepage=(url)
+    write_attribute(:homepage, url.blank? || url =~ %r{^https?://} ? url : "http://#{url}")
+  end
+
+  def vat
+    raise "cannot calculate VAT without risking rounding issues" unless amount % 100 == 0
+    (amount / 100) * 19
   end
 
   def amount_in_dollars
     (amount.to_f / 100).to_i
   end
 
-  def cancelled?
-    !active?
+  def vat_in_dollars
+    vat.to_f / 100
   end
 
-  def cancel!
-    update_attributes!(active: false, cancelled_at: Time.now)
-    user.cancel_subscription
+  def amount_with_vat_in_dollars
+    (amount + vat).to_f / 100
+  end
+
+  def amount_with_vat
+    amount + vat
   end
 
   def save_with_payment!
-    subscription? ? user.subscribe(self) : user.charge(self)
+    stripe_create_customer
+    stripe_create_charge
     save!
   end
 
-  # JSON_ATTRS = [:subscription, :created_at, :comment]
+  ANONYMOUS  = { name: 'Anonymous', twitter_handle: '', github_handle: '', homepage: '' }
+  JSON_ATTRS = [:package, :name, :twitter_handle, :github_handle, :homepage, :created_at]
 
   def as_json(options = {})
-    # super(only: JSON_ATTRS).merge(amount: amount_in_dollars, package: read_attribute(:package), user: user.as_json)
-    user.as_json.merge(amount: amount_in_dollars, package: read_attribute(:package), created_at: created_at)
+    json = super(only: JSON_ATTRS).merge(amount: amount_in_dollars)
+    json = json.merge(ANONYMOUS) unless display?
+    json
   end
+
+  private
+
+    def stripe_create_customer
+      customer = Stripe::Customer.create(description: name, email: email, card: stripe_card_token)
+      # address_line1: address, address_zip: zip, address_state: state, address_country: country)
+      self.stripe_customer_id = customer.id
+    rescue Stripe::StripeError => e
+      logger.error "Stripe error while creating stripe customer: #{e.message} (#{name}, #{email})"
+      errors.add :base, "An error occured while trying to charge your credit card: #{e.message}."
+      raise e
+    end
+
+    def stripe_create_charge
+      amount = add_vat? ? amount_with_vat : self.amount
+      description = "#{email} (#{[package, self.amount].join(', ')})"
+      Stripe::Charge.create(description: description, amount: amount, currency: 'usd', customer: stripe_customer_id)
+    rescue Stripe::StripeError => e
+      logger.error "Stripe error while creating a stripe charge: #{e.message} (#{description})"
+      errors.add :base, "An error occured while trying to charge your credit card: #{e.message}."
+      raise e
+    end
+
 end

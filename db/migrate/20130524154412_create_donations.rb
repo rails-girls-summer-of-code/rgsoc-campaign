@@ -1,21 +1,28 @@
 class CreateDonations < ActiveRecord::Migration
   def change
     create_table :donations do |t|
-      t.belongs_to :user
-
-      t.string  :stripe_token
-      t.string  :stripe_id
+      t.string  :stripe_card_token
+      t.string  :stripe_customer_id
 
       t.string  :package
       t.integer :amount
-      t.boolean :subscription, null: false, default: false
-      t.text    :comment
-      t.text    :message
       t.string  :vat_id
       t.boolean :add_vat
 
-      t.boolean :active, null: false, default: true
-      t.datetime :cancelled_at
+      t.string  :name
+      t.string  :email
+
+      t.string  :address
+      t.string  :zip
+      t.string  :city
+      t.string  :state
+      t.string  :country
+
+      t.string  :twitter_handle
+      t.string  :github_handle
+      t.string  :homepage
+
+      t.boolean :display, :default => true
 
       t.timestamps
     end
