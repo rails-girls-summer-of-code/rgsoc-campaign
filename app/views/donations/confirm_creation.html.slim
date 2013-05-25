@@ -1,0 +1,33 @@
+h2 Wow, thank you!
+
+p
+  - if false && subscription?
+    | You have just ordered the subscription <em>"#{donation.package.name}"</em> which means you are donating <em>#{number_to_currency donation.amount_in_dollars}</em> per month to Travis CI (until you cancel the subscription).
+  - else
+    | You have just donated <em>#{number_to_currency donation.amount_in_dollars}</em> to RailsGirls Summer of Code.
+
+p We can't express how much we appreciate your support.
+
+h3 Thank you so much!
+
+#sociallinks
+  h3 Please spread the word!
+  div
+    a.twitter-share-button data-count="vertical" data-text="I have just donated to RailsGirls Summer of Code and so should you! http://railsgirlsberlin.github.io/summer-of-code" data-url="http://railsgirlsberlin.github.io/summer-of-code" Tweet
+    div.g-plusone data-size="tall" data-href="http://railsgirlsberlin.github.io/summer-of-code"
+    div.fb-like   data-send="false" data-layout="box_count" data-width="50" data-href="http://railsgirlsberlin.github.io/summer-of-code"
+#fb-root
+
+script
+  | (function(d, s) {
+      var js, fjs = d.getElementsByTagName(s)[0], load = function(url, id) {
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.src = url; js.id = id;
+        fjs.parentNode.insertBefore(js, fjs);
+      };
+      load('//connect.facebook.net/en_US/all.js#xfbml=1', 'fbjssdk');
+      load('https://apis.google.com/js/plusone.js', 'gplus1js');
+      load('//platform.twitter.com/widgets.js', 'tweetjs');
+    }(document, 'script'));
+
+

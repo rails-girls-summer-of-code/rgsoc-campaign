@@ -1,0 +1,11 @@
+doctype html
+html
+  head
+    title RailsGirls Summer of Code
+    meta name="keywords" content="template language"
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'https://js.stripe.com/v1', 'application'
+    = csrf_meta_tags
+    = tag :meta, name: 'stripe-key', content: Rails.configuration.stripe[:public_key]
+  body
+    = yield

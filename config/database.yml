@@ -1,0 +1,11 @@
+development:
+  adapter: postgresql
+  database: rgsoc_development
+
+test:
+  adapter: postgresql
+  database: rgsoc_test
+
+production:
+  adapter: postgresql
+  database: rgsoc_production
