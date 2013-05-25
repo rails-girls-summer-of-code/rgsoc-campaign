@@ -39,7 +39,7 @@ class Donation < ActiveRecord::Base
   end
 
   def amount_in_dollars
-    amount.to_f / 100
+    (amount.to_f / 100).to_i
   end
 
   def cancelled?
@@ -56,9 +56,10 @@ class Donation < ActiveRecord::Base
     save!
   end
 
-  JSON_ATTRS = [:subscription, :created_at, :comment]
+  # JSON_ATTRS = [:subscription, :created_at, :comment]
 
   def as_json(options = {})
-    super(only: JSON_ATTRS).merge(amount: amount_in_dollars, user: user.as_json, package: read_attribute(:package))
+    # super(only: JSON_ATTRS).merge(amount: amount_in_dollars, package: read_attribute(:package), user: user.as_json)
+    user.as_json.merge(amount: amount_in_dollars, package: read_attribute(:package), created_at: created_at)
   end
 end

@@ -35,6 +35,9 @@ class User < ActiveRecord::Base
     write_attribute(:homepage, url)
   end
 
+  def name
+    read_attribute(:name) || donations.first.try(:address).try(:name)
+  end
 
   def charges
     Stripe::Charge.all(customer: stripe_customer_id) # TODO hmmm ...
@@ -65,7 +68,8 @@ class User < ActiveRecord::Base
   JSON_ATTRS = [:name, :twitter_handle, :github_handle, :homepage]
 
   def as_json(options = {})
-    display? ? super(only: JSON_ATTRS).merge(gravatar_url: gravatar_url) : ANONYMOUS
+    # display? ? super(only: JSON_ATTRS).merge(gravatar_url: gravatar_url) : ANONYMOUS
+    display? ? super(only: JSON_ATTRS) : ANONYMOUS
   end
 
   protected
