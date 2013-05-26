@@ -51,7 +51,7 @@ class DonationsController < ApplicationController
     end
 
     def normalize_params
-      params[:amount] = params[:amount].to_i * 100 if params[:amount]
+      params[:amount] = params[:amount].to_i if params[:amount]
       params[:donation] ||= { package: params[:package] || 'tiny', amount: params[:amount] }
       params[:donation][:stripe_card_token] ||= params[:stripe_card_token]
     end
