@@ -8,4 +8,16 @@ html
     = csrf_meta_tags
     = tag :meta, name: 'stripe-key', content: Rails.configuration.stripe[:public_key]
   body
+    div class="header-container no-scroll"
+        header class="wrapper clearfix"
+            a href="index.html"
+                h1 class="logo-nav ir" Rails Girls Summer of Code
+            nav class="nav-primary clearfix"
+                ul
+                    li: a href="students.html" Students
+                    li: a href="students.html" Sponsors
+                    li: a href="students.html" Projects
+                    li: a href="students.html" FAQ
+                    li: a href="students.html" Contact
+
     = yield
