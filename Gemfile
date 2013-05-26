@@ -5,7 +5,6 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
 gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 gem 'slim'
 gem 'simple_form'
@@ -15,6 +14,15 @@ gem 'country_select'
 group :development do
   gem 'quiet_assets'
   gem 'thin'
+  gem 'sqlite3'
+end
+
+group :test do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
 end
 
 # Gems used only for assets and not required
