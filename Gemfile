@@ -9,7 +9,7 @@ gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 gem 'slim'
 gem 'simple_form'
 gem 'country_select'
-# gem 'devise'
+gem 'gravatar-ultimate'
 
 group :development do
   gem 'quiet_assets'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130524154412) do
+ActiveRecord::Schema.define(:version => 20130526165157) do
 
   create_table "donations", :force => true do |t|
     t.string   "stripe_card_token"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(:version => 20130524154412) do
     t.boolean  "display",            :default => true
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
+    t.text     "comment"
+    t.string   "gravatar_url"
   end
 
 end

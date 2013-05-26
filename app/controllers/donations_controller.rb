@@ -1,5 +1,9 @@
 class DonationsController < ApplicationController
   force_ssl except: [:index, :stats]
+
+  before_filter :cors_preflight, only: [:index, :stats]
+  after_filter :cors_set_headers, only: [:index, :stats]
+
   before_filter :normalize_params, only: [:checkout, :create]
 
   def index
@@ -54,5 +58,21 @@ class DonationsController < ApplicationController
       params[:amount] = params[:amount].to_i if params[:amount]
       params[:donation] ||= { package: params[:package] || 'tiny', amount: params[:amount] }
       params[:donation][:stripe_card_token] ||= params[:stripe_card_token]
+    end
+
+    def cors_set_headers
+      headers['Access-Control-Allow-Origin'] = '*'
+      headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+      headers['Access-Control-Max-Age'] = "1728000"
+    end
+
+    def cors_preflight
+      if request.method == :options
+        headers['Access-Control-Allow-Origin'] = '*'
+        headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+        headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version'
+        headers['Access-Control-Max-Age'] = '1728000'
+        render text: '', content_type: 'text/plain'
+      end
     end
 end

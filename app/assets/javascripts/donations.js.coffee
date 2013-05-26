@@ -14,7 +14,6 @@ DonationForm = (form) ->
 
   if country.length > 0
     $.getJSON '/geo_ip.json', (data) =>
-      console.log data
       city.val(data.city)            if city.val() == ''
       country.val(data.country_name) if country.val() == ''
       @setupVAT country.val()

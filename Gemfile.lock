@@ -51,6 +51,7 @@ GEM
     eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    gravatar-ultimate (1.0.3)
     hike (1.2.2)
     i18n (0.6.1)
     journey (1.0.4)
@@ -138,6 +139,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   country_select
+  gravatar-ultimate
   jquery-rails
   pg
   quiet_assets

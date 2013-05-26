@@ -1,6 +1,8 @@
+require 'gravatar-ultimate'
+
 class Donation < ActiveRecord::Base
   attr_accessible :stripe_card_token, :stripe_customer_id, :package, :amount, :vat_id, :add_vat, :display,
-    :name, :email, :address, :zip, :city, :state, :country, :twitter_handle, :github_handle, :homepage
+    :name, :email, :address, :zip, :city, :state, :country, :twitter_handle, :github_handle, :homepage, :comment
 
   class << self
     def total
@@ -19,6 +21,10 @@ class Donation < ActiveRecord::Base
 
   def homepage=(url)
     write_attribute(:homepage, url.blank? || url =~ %r{^https?://} ? url : "http://#{url}")
+  end
+
+  def gravatar_url
+    Gravatar.new(email).image_url
   end
 
   def vat
@@ -48,12 +54,13 @@ class Donation < ActiveRecord::Base
     save!
   end
 
-  ANONYMOUS  = { name: 'Anonymous', twitter_handle: '', github_handle: '', homepage: '' }
-  JSON_ATTRS = [:package, :name, :twitter_handle, :github_handle, :homepage, :created_at]
+  ANONYMOUS  = { name: 'Anonymous', twitter_handle: '', github_handle: '', homepage: '', comment: '' }
+  JSON_ATTRS = [:package, :name, :twitter_handle, :github_handle, :homepage, :comment, :created_at]
 
   def as_json(options = {})
     json = super(only: JSON_ATTRS).merge(amount: amount_in_dollars)
-    json = json.merge(ANONYMOUS) unless display?
+    json.update(ANONYMOUS) unless display?
+    json.update(gravatar_url: gravatar_url)
     json
   end
 
