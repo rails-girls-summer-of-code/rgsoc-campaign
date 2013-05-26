@@ -24,7 +24,7 @@ class Donation < ActiveRecord::Base
   end
 
   def gravatar_url
-    Gravatar.new(email).image_url
+    Gravatar.new(email || '').image_url
   end
 
   def vat
