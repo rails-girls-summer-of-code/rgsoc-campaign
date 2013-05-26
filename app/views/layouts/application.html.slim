@@ -7,17 +7,25 @@ html
     = javascript_include_tag 'https://js.stripe.com/v1', 'application'
     = csrf_meta_tags
     = tag :meta, name: 'stripe-key', content: Rails.configuration.stripe[:public_key]
-  body
-    div class="header-container no-scroll"
+  body class="page"
+    div class="header-container"
         header class="wrapper clearfix"
-            a href="index.html"
+            a href="http://railsgirlsberlin.github.io/summer-of-code/"
                 h1 class="logo-nav ir" Rails Girls Summer of Code
             nav class="nav-primary clearfix"
                 ul
-                    li: a href="students.html" Students
-                    li: a href="students.html" Sponsors
-                    li: a href="students.html" Projects
-                    li: a href="students.html" FAQ
-                    li: a href="students.html" Contact
+                    li: a href="http://railsgirlsberlin.github.io/summer-of-code/students.html" Students
+                    li: a href="http://railsgirlsberlin.github.io/summer-of-code/sponsors-stripe.html" Sponsors
+                    li: a href="http://railsgirlsberlin.github.io/summer-of-code/projects.html" Projects
+                    li: a href="http://railsgirlsberlin.github.io/summer-of-code/faq.html" FAQ
+                    li: a href="http://railsgirlsberlin.github.io/summer-of-code/contact.html" Contact
 
     = yield
+
+    div class="footer-container"
+        footer class="wrapper"
+            div class="sponsors silver"
+                h3 Sponsored by
+                a href="http://github.com" target="_blank"
+                    div class="github"
+            p class="sidebar" &copy; Rails Girls 2013
