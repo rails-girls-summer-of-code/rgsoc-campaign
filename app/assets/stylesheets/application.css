@@ -422,6 +422,27 @@
    text-indent: 99em;
    overflow: hidden;
  }
+ /* ==========================================================================
+    Sponsors
+    ========================================================================== */
+ .sponsors {
+
+ }
+ .sponsors div {
+     display: inline-block;
+     width: 50%;
+     height: 4.5em;
+     opacity: .5;
+     transition: opacity 200ms linear;
+     -webkit-transition: opacity 200ms linear;
+     -moz-transition: opacity 200ms linear;
+ }
+
+ .sponsors .github {
+     background: url(/assets/sponsors/GitHub_Logo.png);
+     background-size: contain;
+     background-repeat: no-repeat;
+ }
   /* ==========================================================================
      Donations
      ========================================================================== */
