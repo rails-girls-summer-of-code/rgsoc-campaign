@@ -84,7 +84,7 @@
  .page .header-container {
    position: static;
    height: auto;
-   background-color: rgb(222, 57, 12, 1);
+   background-color: rgba(222, 57, 12, 1);
  }
 
  /* index */
