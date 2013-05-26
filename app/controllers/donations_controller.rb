@@ -1,4 +1,5 @@
 class DonationsController < ApplicationController
+  force_ssl except: [:index, :stats]
   before_filter :normalize_params, only: [:checkout, :create]
 
   def index
