@@ -10,10 +10,10 @@ gem 'slim'
 gem 'simple_form'
 gem 'country_select'
 # gem 'devise'
+gem 'thin'
 
 group :development do
   gem 'quiet_assets'
-  gem 'thin'
   gem 'sqlite3'
 end
 
