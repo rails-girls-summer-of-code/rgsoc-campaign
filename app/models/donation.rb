@@ -16,7 +16,7 @@ class Donation < ActiveRecord::Base
   end
 
   def twitter_handle=(name)
-    write_attribute(:twitter_handle, "@#{name.to_s.gsub(/^@/, '')}")
+    write_attribute(:twitter_handle, name.to_s.gsub(/^@/, ''))
   end
 
   def homepage=(url)
