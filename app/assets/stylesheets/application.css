@@ -266,6 +266,20 @@
    letter-spacing: 1px;
  }
 
+.actions {
+  position: relative;
+}
+.actions .message {
+  position: absolute;
+  top: 60px;
+  left: 170px;
+  background: url(/assets/spinner.gif) left 4px no-repeat;
+  padding-left: 22px;
+  color: #999;
+}
+
+
+
  /* ==============
      MOBILE: Main
     ============== */
