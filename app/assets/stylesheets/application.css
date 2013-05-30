@@ -349,14 +349,14 @@
  .container ul li {
    list-style-position: inside;
  }
- .container ul li:before {
-     content: '\2022 ';
-     position: absolute;
-     padding-right: 0.5em;
-     margin-bottom: 14em;
-     margin-left: -.7em;
-     color: red;
- }
+ /* .container ul li:before { */
+ /*     content: '\2022 '; */
+ /*     position: absolute; */
+ /*     padding-right: 0.5em; */
+ /*     margin-bottom: 14em; */
+ /*     margin-left: -.7em; */
+ /*     color: red; */
+ /* } */
  .content {
    width: 100%;
    float: none;
@@ -464,10 +464,8 @@
   #sociallinks iframe { margin-right: 2em;}
   .fb-like {margin-left: 2em;}
 
-  .simple_form input[type=text], .simple_form input[type=email], .simple_form textarea {
-     float: right;
+  .simple_form input, .simple_form textarea {
      padding: 8px;
-     width: 80%;
      border: 1px solid rgb(221, 221, 221);
      font-size: 16px;
      border-radius: 8px 8px 8px 8px;
@@ -478,7 +476,7 @@
   .simple_form label {
      float: left;
      clear: both;
-     width: 13%;
+     width: 70px;
      margin-bottom: 2px;
      padding-right: 15px;
      line-height: 39px;
@@ -492,8 +490,26 @@
  .simple_form div.input {
  	height: 3em;
  }
+ .simple_form .boolean {
+   margin-top: 5px;
+ }
+ .simple_form .boolean input {
+  float: left;
+  margin-left: calc(13% + 10px);
+ }
+ .simple_form .boolean label {
+   width: 50%;
+   clear: none;
+   padding: 0 0 0 15px;
+   line-height: 1em;
+   text-align: left;
+ }
+ .simple_form a {
+   color: black;
+   text-decoration: underline;
+ }
  .simple_form fieldset {
- 	padding: 18px 8px 9px;
+ 	padding: 1em 0 0 1em;
  	margin-bottom: 1em;
  	border: 1px solid rgb(221, 221, 221);
  	border-radius: 8px 8px 8px 8px;
@@ -507,6 +523,20 @@
  	border-radius: 8px 8px 8px 8px;
  	color: rgb(222, 0, 0);
  	background-color: rgba(222, 0, 0, .4);
+ }
+
+ .note {
+   font-size: 0.9em;
+ }
+
+ .footnotes {
+   margin: 0;
+   padding: 0;
+ }
+ .footnotes li {
+   list-style-type: none;
+   color: #999;
+   font-size: 0.9em;
  }
 
  /* ==========================================================================

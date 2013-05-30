@@ -20,7 +20,7 @@ section class="main container"
         - if company?
           #address
             h3 About you
-            p We'd love to list you on the crowdfunding page. Please provide some info:
+            p We'd love to list you on the crowdfunding page. Please provide some info about you.
             fieldset
               = f.input :name, required: true
               = f.input :twitter_handle, label: 'Twitter', hint: 'Your Twitter handle', input_html: { placeholder: '@' }
@@ -39,7 +39,7 @@ section class="main container"
         - else
           #user
             h3 About you
-            p We'd love to list you on the crowdfunding page. Please provide some info:
+            p We'd love to list you on the crowdfunding page. Please provide some info about you.
             fieldset
               = f.input :name
               = f.input :email
@@ -47,6 +47,8 @@ section class="main container"
               = f.input :github_handle,  label: 'Github',  hint: 'Your Github handle'
               = f.input :homepage, input_html: { placeholder: 'http://' }
               = f.input :comment, as: :string
+              = f.input :hide, as: :boolean, label: 'Hide amount?', input_html: { class: 'inline' }
+            p.note If you leave these fields empty, we will list the donation as anonymous. If you tick "Hide amount?", we won't display the amount. We won't display the email address, but show your <a href="http://gravatar.com">Gravatar</a>.
 
         - if needs_vat?
           = f.hidden_field :add_vat, value: true

@@ -1,7 +1,7 @@
 require 'gravatar-ultimate'
 
 class Donation < ActiveRecord::Base
-  attr_accessible :stripe_card_token, :stripe_customer_id, :package, :amount, :vat_id, :add_vat, :display,
+  attr_accessible :stripe_card_token, :stripe_customer_id, :package, :amount, :vat_id, :add_vat, :display, :hide,
     :name, :email, :address, :zip, :city, :state, :country, :twitter_handle, :github_handle, :homepage, :comment
 
   class << self
@@ -10,9 +10,18 @@ class Donation < ActiveRecord::Base
     end
 
     def stats
-      stats = Hash[*connection.select_rows('SELECT package, count(id) FROM orders GROUP BY package').flatten].symbolize_keys
-      stats.each { |key, value| stats[key] = value.to_i }
+      # stats = Hash[*connection.select_rows('SELECT package, count(id) FROM donations GROUP BY package').flatten].symbolize_keys
+      # stats.each { |key, value| stats[key] = value.to_i }
+      { total: connection.select_value('SELECT SUM(amount) FROM donations') }
     end
+  end
+
+  def hide
+    !display
+  end
+
+  def hide=(hide)
+    self.display = !hide
   end
 
   def twitter_handle=(name)
@@ -54,12 +63,12 @@ class Donation < ActiveRecord::Base
     save!
   end
 
-  ANONYMOUS  = { name: 'Anonymous', twitter_handle: '', github_handle: '', homepage: '', comment: '' }
+  # ANONYMOUS  = { name: 'Anonymous', twitter_handle: '', github_handle: '', homepage: '', comment: '' }
   JSON_ATTRS = [:package, :name, :twitter_handle, :github_handle, :homepage, :comment, :created_at]
 
   def as_json(options = {})
-    json = super(only: JSON_ATTRS).merge(amount: amount_in_dollars)
-    json.update(ANONYMOUS) unless display?
+    json = super(only: JSON_ATTRS)
+    json.update(amount: amount_in_dollars) if display?
     json.update(gravatar_url: gravatar_url)
     json
   end
