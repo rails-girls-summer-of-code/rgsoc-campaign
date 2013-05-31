@@ -37,7 +37,6 @@ DonationForm = (form) ->
 
 $.extend DonationForm.prototype,
   toggleSection: (name, onoff) ->
-    $("#{name} #donation_add_vat").val onoff.toString()
     $("#{name} #vat_note").toggle(onoff)
     $("#{name}").toggle(onoff)
     if onoff
@@ -46,6 +45,7 @@ $.extend DonationForm.prototype,
       $("#{name} .required input").removeAttr('required')
 
   setupVAT: (country) ->
+    $("#donation_add_vat").val((country == 'Germany').toString())
     @toggleSection "#vat-germany", country == 'Germany'
     @toggleSection '#vat', EU.indexOf(country) > -1
 
