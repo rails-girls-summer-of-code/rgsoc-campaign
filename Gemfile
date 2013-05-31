@@ -19,11 +19,17 @@ end
 
 group :test do
   gem 'sqlite3'
+  gem 'capybara'
+  gem 'rake' # for Travis <3
 end
 
 group :production do
   gem 'pg'
   gem 'unicorn'
+end
+
+group :development, :test do
+  gem 'rspec-rails'
 end
 
 # Gems used only for assets and not required
