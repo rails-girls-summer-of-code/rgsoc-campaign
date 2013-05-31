@@ -4,8 +4,6 @@ describe DonationsController do
 
   before :each do
     stub_stripe_methods
-    # we need SSL otherwise we get kicked out
-    request.env['HTTPS'] = 'on'
   end
 
   let(:params) do
