@@ -1,5 +1,5 @@
 class DonationsController < ApplicationController
-  force_ssl except: [:index, :stats]
+  force_ssl except: [:index, :stats] unless Rails.env.development? || Rails.env.test?
 
   before_filter :cors_preflight, only: [:index, :stats]
   after_filter :cors_set_headers, only: [:index, :stats]
