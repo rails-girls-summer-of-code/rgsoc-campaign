@@ -198,7 +198,6 @@
  .footer-container { min-height: 10em; padding-bottom: 1em; padding-top: 2em; clear: both; }
  .footer-container .nav-meta a { color: white; font-weight: normal; text-decoration: none }
  .footer-container .nav-meta a:hover { text-decoration: underline; }
- .footer-container p {position: absolute; bottom: 0; right: 0; padding: 0; margin: 0; float: right; text-align: right;}
  .footer-container .wrapper {position: relative; min-height: 20em;}
 
  a.button, .simple_form input[type="submit"]{
@@ -295,8 +294,12 @@
  }
 
  .footer-container footer {
-     color: white;
-     padding-top: 1em;
+   color: white;
+   padding-top: 1em;
+ }
+ .footer-container footer a {
+   color: white;
+   text-decoration: underline;
  }
 
  /* ===============
@@ -464,11 +467,8 @@
   #sociallinks iframe { margin-right: 2em;}
   .fb-like {margin-left: 2em;}
 
-.simple_form input[type=text], .simple_form input[type=email], .simple_form textarea {
-     float: right;
+  .simple_form input, .simple_form textarea {
      padding: 8px;
-     margin-right: 5%;
-     width: 75%;
      border: 1px solid rgb(221, 221, 221);
      font-size: 16px;
      border-radius: 8px 8px 8px 8px;
@@ -479,7 +479,7 @@
   .simple_form label {
      float: left;
      clear: both;
-     width: 13%;
+     width: 70px;
      margin-bottom: 2px;
      padding-right: 15px;
      line-height: 39px;
