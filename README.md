@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/RailsGirlsBerlin/rgsoc-campaign.png?branch=master)](https://travis-ci.org/RailsGirlsBerlin/rgsoc-campaign)
+
 Extracted from https://github.com/travis-ci/travis-crowd
 
 In order to run this you'll need an account at Stripe and set the tokens to your environment:
