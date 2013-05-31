@@ -3,6 +3,8 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'capybara/rails'
+
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -43,3 +45,4 @@ def stub_stripe_methods
   Donation.any_instance.stub(:stripe_create_customer)
   Donation.any_instance.stub(:stripe_create_charge)
 end
+
