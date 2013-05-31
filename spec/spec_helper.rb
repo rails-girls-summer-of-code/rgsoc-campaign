@@ -36,3 +36,10 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 end
+
+## Helper methods
+
+def stub_stripe_methods
+  Donation.any_instance.stub(:stripe_create_customer)
+  Donation.any_instance.stub(:stripe_create_charge)
+end
