@@ -1,0 +1,6 @@
+language: ruby
+rvm: 1.9.3
+notifications:
+  email:
+    - me@svenfuchs.com
+    - tobias.pfeiffer@student.hpi.uni-potsdam.de
