@@ -6,8 +6,16 @@ class DonationsController < ApplicationController
 
   before_filter :normalize_params, only: [:checkout, :create]
 
+  before_filter do
+    require_http_auth if params[:format] == 'csv'
+  end
+
+
   def index
-    render json: Donation.order('created_at DESC').as_json
+    respond_to do |format|
+      format.json { render json: Donation.order('created_at DESC') }
+      format.csv  { render text:  Donation.as_csv }
+    end
   end
 
   def stats

@@ -1,3 +1,4 @@
+require 'csv'
 require 'gravatar-ultimate'
 
 class Donation < ActiveRecord::Base
@@ -10,9 +11,19 @@ class Donation < ActiveRecord::Base
     end
 
     def stats
-      # stats = Hash[*connection.select_rows('SELECT package, count(id) FROM donations GROUP BY package').flatten].symbolize_keys
-      # stats.each { |key, value| stats[key] = value.to_i }
       { total: connection.select_value('SELECT SUM(amount) FROM donations') }
+    end
+
+    def as_csv
+      column_names = %w(name email twitter_handle github_handle homepage comment amount)
+      CSV.generate do |csv|
+        csv << column_names
+        where(package: 'Custom').order('created_at').each do |donation|
+          values = donation.attributes.values_at(*column_names)
+          values[values.size - 1] = '-' unless donation.display?
+          csv << values
+        end
+      end
     end
   end
 
