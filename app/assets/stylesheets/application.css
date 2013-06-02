@@ -14,11 +14,11 @@
 
  @font-face {
      font-family: 'Interstate';
-     src: url('fonts/interstate_mono-webfont.eot');
-     src: url('fonts/interstate_mono-webfont.eot?#iefix') format('embedded-opentype'),
-          url('fonts/interstate_mono-webfont.woff') format('woff'),
-          url('fonts/interstate_mono-webfont.ttf') format('truetype'),
-          url('fonts/interstate_mono-webfont.svg#interstate_monoregular') format('svg');
+     src: url('/fonts/interstate_mono-webfont.eot');
+     src: url('/fonts/interstate_mono-webfont.eot?#iefix') format('embedded-opentype'),
+          url('/fonts/interstate_mono-webfont.woff') format('woff'),
+          url('/fonts/interstate_mono-webfont.ttf') format('truetype'),
+          url('/fonts/interstate_mono-webfont.svg#interstate_monoregular') format('svg');
      font-weight: normal;
      font-style: normal;
  }
@@ -463,9 +463,18 @@
   /* ==========================================================================
      Donations
      ========================================================================== */
-  #sociallinks { margin-bottom: 126px; }
-  #sociallinks iframe { margin-right: 2em;}
-  .fb-like {margin-left: 2em;}
+  #sociallinks {
+    margin: 50px 0 126px 0;
+  }
+  #sociallinks div {
+    margin-top: 1em;
+  }
+  #sociallinks iframe {
+    margin-right: 2em;
+  }
+  .fb-like {
+    margin-left: 2em;
+  }
 
   .simple_form input, .simple_form textarea {
      padding: 8px;
