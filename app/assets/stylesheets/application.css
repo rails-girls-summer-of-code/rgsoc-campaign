@@ -486,28 +486,29 @@
   	margin-top: .5em;
   }
   .simple_form label {
-     float: left;
-     clear: both;
-     width: 70px;
      margin-bottom: 2px;
      padding-right: 15px;
-     line-height: 39px;
-     text-align: right;
      font-size: 15px;
      text-shadow: 2px 2px 0px rgb(255, 255, 255);
  }
  .simple_form .hint {
  	display: none;
  }
- .simple_form div.input {
- 	height: 3em;
+
+ .simple_form .input {
+   margin-bottom: 15px;
  }
+ .simple_form .input:after {
+   content: '';
+   clear: both;
+   display: table;
+ }
+
  .simple_form .boolean {
    margin-top: 5px;
  }
  .simple_form .boolean input {
   float: left;
-  margin-left: calc(13% + 10px);
  }
  .simple_form .boolean label {
    width: 50%;
@@ -515,6 +516,7 @@
    padding: 0 0 0 15px;
    line-height: 1em;
    text-align: left;
+   float: left;
  }
  .simple_form a {
    color: black;
