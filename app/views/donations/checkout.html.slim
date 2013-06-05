@@ -42,7 +42,7 @@ section class="main container"
             p We'd love to list you on the crowdfunding page. Please provide some info about you.
             fieldset
               = f.input :name
-              = f.input :email
+              = f.input :email, required: true
               = f.input :twitter_handle, label: 'Twitter', hint: 'Your Twitter handle', input_html: { placeholder: '@' }
               = f.input :github_handle,  label: 'Github',  hint: 'Your Github handle'
               = f.input :homepage, input_html: { placeholder: 'http://' }
