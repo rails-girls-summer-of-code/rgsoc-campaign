@@ -1,0 +1,21 @@
+body.simple {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  width: 700px;
+  padding: 2em 4em;
+  line-height: 150%;
+}
+
+label {
+  display: block;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+}
+
+#comments {
+  background-color: #eee;
+  margin-top 2em;
+  padding: 1em 2em;
+}
