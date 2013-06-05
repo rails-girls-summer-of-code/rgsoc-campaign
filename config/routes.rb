@@ -1,6 +1,12 @@
 require 'geo_ip'
 
 Rgsoc::Application.routes.draw do
+  resources :comments
+
+
+  resources :applications
+  resources :applications_imports
+
   resources :donations do
     post 'checkout', on: :collection
     get 'stats',     on: :collection

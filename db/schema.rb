@@ -11,7 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130526165157) do
+ActiveRecord::Schema.define(:version => 20130605015943) do
+
+  create_table "applications", :force => true do |t|
+    t.string   "timestamp"
+    t.string   "student_name"
+    t.string   "student_email"
+    t.string   "pair_name"
+    t.string   "pair_email"
+    t.string   "living_costs"
+    t.text     "data"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "applications", ["timestamp"], :name => "index_applications_on_timestamp"
+
+  create_table "comments", :force => true do |t|
+    t.integer  "application_id"
+    t.string   "author_name"
+    t.text     "text"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "donations", :force => true do |t|
     t.string   "stripe_card_token"
