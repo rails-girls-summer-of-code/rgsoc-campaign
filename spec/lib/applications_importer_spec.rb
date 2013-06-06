@@ -28,7 +28,7 @@ describe ApplicationsImporter do
 
     it 'actually updates the record' do
       importer(data.gsub('2', '8')).run
-      Application.first.data.first.should == '8'
+      Application.first.data['Student Name'].should == '8'
     end
   end
 end
