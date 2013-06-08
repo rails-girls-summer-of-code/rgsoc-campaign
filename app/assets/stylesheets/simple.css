@@ -39,6 +39,7 @@ textarea {
 table {
   border-collapse: collapse;
 }
+colgroup.student_name,
 colgroup.student_name {
   white-space: nowrap;
 }
