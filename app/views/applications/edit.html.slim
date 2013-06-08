@@ -4,7 +4,7 @@
 h1 = "Edit #{@application.student_name}"
 
 = simple_form_for @application do |f|
-  = f.input :hidden, label: 'Hide this application'
+  = f.input :hidden, label: 'Hide this application', as: :boolean
   = f.simple_fields_for :data do |d|
     - @application.data.each do |title, value|
       = d.input CGI.escape(title), as: :text, input_html: { value: value }, required: false, label: title
