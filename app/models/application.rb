@@ -45,7 +45,7 @@ class Application < ActiveRecord::Base
   end
 
   def sponsor_pick?
-    !!sponsor_pick
+    sponsor_pick.present?
   end
 
   def estimated_women_priority
