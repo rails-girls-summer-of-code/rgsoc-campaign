@@ -20,10 +20,10 @@ body.simple {
   display: table-cell;
   text-align: center;
 }
-.nav .prev {
+.nav .left {
   text-align: left;
 }
-.nav .next {
+.nav .right {
   text-align: right;
 }
 
@@ -86,4 +86,23 @@ td {
   font-size: .8em;
   margin-top: 0;
   line-height: 140%;
+}
+
+.boolean {
+  height: 1em;
+  margin-bottom: 1em;
+}
+.boolean input[type=checkbox] {
+  float: left;
+}
+.boolean label {
+  float: left;
+  margin-left: 0.5em;
+  line-height: 20px;
+}
+.boolean:before,
+.boolean:after {
+  content: " ";
+  display: table;
+  clear: both;
 }

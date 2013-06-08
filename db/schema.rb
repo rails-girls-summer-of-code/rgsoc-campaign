@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130607230808) do
+ActiveRecord::Schema.define(:version => 20130608094235) do
 
   create_table "applications", :force => true do |t|
     t.string   "timestamp"
@@ -21,8 +21,9 @@ ActiveRecord::Schema.define(:version => 20130607230808) do
     t.string   "pair_email"
     t.string   "living_costs"
     t.text     "data"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.boolean  "hidden",        :default => false
   end
 
   add_index "applications", ["timestamp"], :name => "index_applications_on_timestamp"

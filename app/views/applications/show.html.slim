@@ -1,9 +1,11 @@
 .nav
-  = link_to @application.prev ? '&larr; Previous'.html_safe : '', @application.prev, class: 'prev'
+  = link_to @application.prev ? '&larr; Previous'.html_safe : '', @application.prev, class: 'left'
   = link_to 'Overview', applications_path
-  = link_to @application.next ? 'Next &rarr;'.html_safe : '', @application.next, class: 'next'
+  = link_to @application.next ? 'Next &rarr;'.html_safe : '', @application.next, class: 'right'
 
 h1 = @application.student_name
+
+= link_to 'Edit', edit_application_path(@application)
 
 - @application.data.each do |title, value|
   h4 = title

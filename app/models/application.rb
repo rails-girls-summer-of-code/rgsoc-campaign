@@ -1,5 +1,9 @@
 class Application < ActiveRecord::Base
   class << self
+    def visible
+      where(hidden: false)
+    end
+
     def sort_by(column)
       column = column.to_sym
       sorted = column == :id ? order(column) : all.sort_by(&column)
@@ -8,7 +12,7 @@ class Application < ActiveRecord::Base
     end
   end
 
-  attr_accessible :timestamp, :data
+  attr_accessible :timestamp, :data, :hidden
 
   serialize :data
 
@@ -16,11 +20,11 @@ class Application < ActiveRecord::Base
   has_many :comments
 
   def prev
-    self.class.where('id < ?', id).order(:id).first
+    self.class.where('id < ?', id).visible.order(:id).first
   end
 
   def next
-    self.class.where('id > ?', id).order(:id).first
+    self.class.where('id > ?', id).visible.order(:id).first
   end
 
   def student_name
