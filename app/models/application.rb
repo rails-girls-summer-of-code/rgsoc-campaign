@@ -28,6 +28,7 @@ class Application < ActiveRecord::Base
     values = ratings.map(&:value)
     total = values.length > 0 ? (values.sum / values.length).round(2) : 0
     total += SPONSOR_PICK if sponsor_pick?
+    total
   end
 
   def rating_defaults
