@@ -39,6 +39,9 @@ textarea {
 table {
   border-collapse: collapse;
 }
+colgroup.student_name {
+  white-space: nowrap;
+}
 tr.odd {
   background-color: #eee;
 }
