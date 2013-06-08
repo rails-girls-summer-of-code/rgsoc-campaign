@@ -43,10 +43,8 @@ class Application < ActiveRecord::Base
     keys.inject({}) { |defaults, key| defaults.merge(key => send("estimated_#{key}")) }
   end
 
-  SPONSOR_PICKS = { github: 9, soundcloud: 55 }
-
   def sponsor_pick?
-    SPONSOR_PICKS.values.include?(id)
+    !!sponsor_pick
   end
 
   def estimated_women_priority
