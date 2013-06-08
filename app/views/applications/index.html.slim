@@ -1,2 +1,11 @@
 table
-  = render @applications
+  thead
+    tr
+      td #
+      td = link_to 'ID', applications_path(order: 'id')
+      td = link_to 'Student', applications_path(order: 'student_name')
+      td = link_to 'Total', applications_path(order: 'total_rating')
+      - Rating.user_names.each do |user_name|
+        td = user_name
+  tbody
+    = render @applications

@@ -1,6 +1,9 @@
-= link_to 'Back', applications_path
+.nav
+  = link_to @application.prev ? '&larr; Previous'.html_safe : '', @application.prev, class: 'prev'
+  = link_to 'Overview', applications_path
+  = link_to @application.next ? 'Next &rarr;'.html_safe : '', @application.next, class: 'next'
 
-h1 = @application.timestamp
+h1 = @application.student_name
 
 - @application.data.each do |title, value|
   h4 = title
@@ -16,4 +19,49 @@ h1 = @application.timestamp
     = f.submit 'Add comment'
 
   = render @application.comments
+
+#rating
+  = simple_form_for @rating do |f|
+    = f.input :application_id, as: :hidden
+    = f.input :user_name, label: 'Your name'
+
+    = f.simple_fields_for :data do |d|
+      h3 A. Women get priority
+
+      .button_group
+        = d.collection_radio_buttons :women_priority, WOMEN_PRIORITY, :first, :last, checked: @data.women_priority
+
+      h3 B. Experience/skill level
+
+      = d.input :skill_level, as: :string, required: false, label: false, input_html: { value: @data.skill_level }
+      p.hint round([higher value] * 2 + [lower value]) / 3)
+
+      h3 C. Practice time
+
+      .button_group
+        = d.collection_radio_buttons :practice_time, PRACTICE_TIME, :first, :last, checked: @data.practice_time
+
+      h3 D. Project time
+
+      .button_group
+        = d.collection_radio_buttons :project_time, PROJECT_TIME, :first, :last, checked: @data.project_time
+
+      h3 E. Support
+
+      .button_group
+        = d.collection_radio_buttons :support, SUPPORT, :first, :last, checked: @data.support
+
+      h3 F. Extra points
+
+      = d.input :bonus, as: :string, required: false, label: false, input_html: { value: @data.bonus }
+      p.hint up to 10: overall impression, great preparation, women who have been discriminated against, have a difficult background etc.
+
+    = f.submit 'Save'
+
+      h3 G. Project exposure
+      h3 H. Mentor pick
+      h3 I. Sponsor pick
+      p these can to be global ...
+
+
 

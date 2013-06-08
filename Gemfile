@@ -7,6 +7,7 @@ gem 'slim'
 gem 'simple_form'
 gem 'country_select'
 gem 'gravatar-ultimate'
+gem 'hashr'
 
 group :development do
   gem 'quiet_assets'

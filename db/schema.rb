@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130605015943) do
+ActiveRecord::Schema.define(:version => 20130607230808) do
 
   create_table "applications", :force => true do |t|
     t.string   "timestamp"
@@ -57,6 +57,14 @@ ActiveRecord::Schema.define(:version => 20130605015943) do
     t.datetime "updated_at",                           :null => false
     t.text     "comment"
     t.string   "gravatar_url"
+  end
+
+  create_table "ratings", :force => true do |t|
+    t.integer  "application_id"
+    t.string   "user_name"
+    t.text     "data"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
 end

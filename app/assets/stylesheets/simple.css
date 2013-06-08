@@ -1,8 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+
 body.simple {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  width: 700px;
+  position: relative;
+  width: 800px;
   padding: 2em 4em;
   line-height: 150%;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.nav {
+  display: table;
+  width: 100%;
+  margin-bottom: 4em;
+}
+.nav a {
+  width: 33%;
+  display: table-cell;
+  text-align: center;
+}
+.nav .prev {
+  text-align: left;
+}
+.nav .next {
+  text-align: right;
 }
 
 label {
@@ -14,8 +36,54 @@ textarea {
   height: 100px;
 }
 
+table {
+  border-collapse: collapse;
+}
+tr.odd {
+  background-color: #eee;
+}
+td {
+  padding: 0.25em 0.5em;
+  border: 1px solid #eee;
+}
+
 #comments {
   background-color: #eee;
   margin-top 2em;
   padding: 1em 2em;
+}
+
+#rating {
+  position: fixed;
+  top: 0;
+  left: 820px;
+  height: 100%;
+  width: 340px;
+  padding: 2em;
+  background-color: rgb(238, 238, 238);
+  overflow-y: scroll;
+  font-size: 90%;
+}
+#rating h3 {
+  font-size: 1em;
+}
+#rating input[type=radio] {
+  clear: left;
+  float: left;
+  margin-right: 1em;
+}
+#rating label.collection_radio_buttons {
+  float: left;
+  margin-right: 1em;
+}
+#rating .button_group:before,
+#rating .button_group:after {
+  content: " ";
+  display: table;
+  clear: both;
+}
+#rating .hint {
+  font-size: .8em;
+  margin-top: 0;
+  line-height: 140%;
 }
