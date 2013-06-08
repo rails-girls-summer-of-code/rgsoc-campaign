@@ -1,7 +1,10 @@
 class Application < ActiveRecord::Base
   class << self
     def sort_by(column)
-      column.to_sym == :id ? order(column) : all.sort_by(&column.to_sym).reverse
+      column = column.to_sym
+      sorted = column == :id ? order(column) : all.sort_by(&column)
+      sorted = sorted.reverse if column == :total_rating
+      sorted
     end
   end
 
