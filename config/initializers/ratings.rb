@@ -26,5 +26,12 @@ SUPPORT = [
   [1, '1 hour a day']
 ]
 
+PLANNING = [
+  [10, 'very thorough plan'],
+  [5,  'there is a plan'],
+  [2,  'project named'],
+  [0,  'project undecided']
+]
+
 SPONSOR_PICK = 20
 MENTOR_PICK = 10

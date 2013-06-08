@@ -46,15 +46,20 @@ h1 = @application.student_name
       .button_group
         = d.collection_radio_buttons :project_time, PROJECT_TIME, :first, :last, checked: @data.project_time
 
-      h3 E. Support
+      h3 E. Planning quality
+
+      .button_group
+        = d.collection_radio_buttons :planning, PLANNING, :first, :last, checked: @data.planning
+
+      h3 F. Support
 
       .button_group
         = d.collection_radio_buttons :support, SUPPORT, :first, :last, checked: @data.support
 
-      h3 F. Extra points
+      h3 G. Extra points
 
       = d.input :bonus, as: :string, required: false, label: false, input_html: { value: @data.bonus }
-      p.hint up to 10: overall impression, great preparation, women who have been discriminated against, have a difficult background etc.
+      p.hint up to 10: great overall impression, women who have been discriminated against, have a difficult background etc.
 
     = f.submit 'Save'
 
