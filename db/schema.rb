@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130608154502) do
+ActiveRecord::Schema.define(:version => 20130608155503) do
 
   create_table "applications", :force => true do |t|
     t.string   "timestamp"
@@ -21,10 +21,13 @@ ActiveRecord::Schema.define(:version => 20130608154502) do
     t.string   "pair_email"
     t.string   "living_costs"
     t.text     "data"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-    t.boolean  "hidden",        :default => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.boolean  "hidden",             :default => false
     t.string   "sponsor_pick"
+    t.string   "country"
+    t.integer  "min_living"
+    t.integer  "project_visibility"
   end
 
   add_index "applications", ["timestamp"], :name => "index_applications_on_timestamp"

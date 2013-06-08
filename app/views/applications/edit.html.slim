@@ -5,9 +5,15 @@ h1 = "Edit #{@application.student_name}"
 
 = simple_form_for @application do |f|
   = f.input :hidden, label: 'Hide this application', as: :boolean
+
   = f.input :sponsor_pick, label: 'Picked by sponsor', as: :string
+  = f.input :country, label: 'Location', as: :string
+  = f.input :min_living, label: 'Minimum living cost', as: :string
+  = f.input :project_visibility, label: 'Project visibility bonus', as: :string
+
   = f.simple_fields_for :data do |d|
     - @application.data.each do |title, value|
       = d.input CGI.escape(title), as: :text, input_html: { value: value }, required: false, label: title
+
   = f.submit 'Save'
 

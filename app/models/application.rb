@@ -12,7 +12,7 @@ class Application < ActiveRecord::Base
     end
   end
 
-  attr_accessible :timestamp, :data, :hidden, :sponsor_pick
+  attr_accessible :timestamp, :data, :hidden, :sponsor_pick, :country, :min_living, :project_visibility
 
   serialize :data
 
@@ -35,6 +35,7 @@ class Application < ActiveRecord::Base
     values = ratings.map(&:value)
     total = values.length > 0 ? (values.sum / values.length).round(2) : 0
     total += SPONSOR_PICK if sponsor_pick?
+    total += project_visibility.to_i unless project_visibility.blank?
     total
   end
 
