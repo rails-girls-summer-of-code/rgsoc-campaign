@@ -12,7 +12,7 @@ class Application < ActiveRecord::Base
     end
   end
 
-  attr_accessible :timestamp, :data, :hidden
+  attr_accessible :timestamp, :data, :hidden, :sponsor_pick
 
   serialize :data
 

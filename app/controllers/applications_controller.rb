@@ -34,6 +34,7 @@ class ApplicationsController < ApplicationController
     end
 
     def normalize_params
+      params[:application][:sponsor_pick] = '' if params[:application][:sponsor_pick].blank?
       params[:application][:data] = params[:application][:data].inject({}) do |data, (key, value)|
         value = nil if value == ''
         data.merge(CGI.unescape(key) => value)
