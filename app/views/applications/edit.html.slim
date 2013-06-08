@@ -11,6 +11,7 @@ h1 = "Edit #{@application.student_name}"
   = f.input :min_living, label: 'Minimum living cost', as: :string
   = f.input :project_name, label: 'Project name', as: :string
   = f.input :project_visibility, label: 'Project visibility bonus', as: :string
+  = f.input :comment, label: 'Comment', as: :string
 
   = f.simple_fields_for :data do |d|
     - @application.data.each do |title, value|

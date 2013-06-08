@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130608163457) do
+ActiveRecord::Schema.define(:version => 20130608165215) do
 
   create_table "applications", :force => true do |t|
     t.string   "timestamp"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20130608163457) do
     t.integer  "min_living"
     t.integer  "project_visibility"
     t.string   "project_name"
+    t.string   "comment"
   end
 
   add_index "applications", ["timestamp"], :name => "index_applications_on_timestamp"
