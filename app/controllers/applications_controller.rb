@@ -1,4 +1,4 @@
-require 'applications_importer'
+require 'applications/table'
 
 class ApplicationsController < ApplicationController
   before_filter :require_http_auth
@@ -7,7 +7,7 @@ class ApplicationsController < ApplicationController
   layout 'simple'
 
   def index
-    @applications = Application.includes(:ratings).visible.sort_by(params[:order] || :id)
+    @applications = applications_table
   end
 
   def show
@@ -27,6 +27,11 @@ class ApplicationsController < ApplicationController
   end
 
   private
+
+    def applications_table
+      applications = Application.includes(:ratings).visible.sort_by(params[:order] || :id)
+      Applications::Table.new(Rating.user_names, applications)
+    end
 
     def find_or_initialize_rating
       attrs = { application_id: @application.id, user_name: session[:user_name] }

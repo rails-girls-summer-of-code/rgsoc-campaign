@@ -25,44 +25,38 @@ require "uri"
 # About you
 # "Where you live, how much money do you need at the very minimum per month to sustain yourself while working fulltime on an open source project?"
 
-class ApplicationsImporter
-  class << self
-    def run(model, data)
-      new(model, data).run
+module Applications
+  class Importer
+    attr_reader :model, :headers, :data
+
+    def initialize(model, csv)
+      @model = model
+      @data = CSV.parse(csv)
+      @headers = data.shift
     end
+
+    def run
+      data.each do |row|
+        create(row) if row.first && !find(row)
+      end
+    end
+
+    private
+
+      def find(row)
+        model.where(timestamp: row.first).first
+      end
+
+      def create(row)
+        model.create!(attributes(row))
+      end
+
+      def update(record, row)
+        record.update_attributes!(attributes(row))
+      end
+
+      def attributes(row)
+        { timestamp: row[0], data: Hash[*headers.zip(row).flatten] }
+      end
   end
-
-  attr_reader :model, :headers, :data
-
-  def initialize(model, csv)
-    @model = model
-    @data = CSV.parse(csv)
-    @headers = data.shift
-  end
-
-  def run
-    data.each do |row|
-      next unless row.first
-      record = find(row)
-      record ? update(record, row) : create(row)
-    end
-  end
-
-  private
-
-    def find(row)
-      model.where(timestamp: row.first).first
-    end
-
-    def create(row)
-      model.create!(attributes(row))
-    end
-
-    def update(record, row)
-      record.update_attributes!(attributes(row))
-    end
-
-    def attributes(row)
-      { timestamp: row[0], data: Hash[*headers.zip(row).flatten] }
-    end
 end

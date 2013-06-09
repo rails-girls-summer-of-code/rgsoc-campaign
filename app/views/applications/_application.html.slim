@@ -1,5 +1,7 @@
+- application = row.application
+
 tr class=cycle(:even, :odd)
-  td = application_counter + 1
+  td = row_counter + 1
   td = application.id
   td = link_to application.student_name, application
   td = application.sponsor_pick

@@ -17,8 +17,8 @@ table
       td = link_to 'Money', applications_path(order: 'min_living')
 
       td = link_to 'Total', applications_path(order: 'total_rating')
-      - Rating.user_names.each do |user_name|
-        td = user_name
+      - @applications.names.each do |name|
+        td = name
 
   tbody
-    = render @applications
+    = render partial: 'applications/application', collection: @applications.rows, as: :row

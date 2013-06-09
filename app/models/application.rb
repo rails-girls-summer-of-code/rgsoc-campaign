@@ -1,5 +1,11 @@
+require 'applications/importer'
+
 class Application < ActiveRecord::Base
   class << self
+    def import(data)
+      Applications::Importer.new(self, data).run
+    end
+
     def visible
       where(hidden: false)
     end

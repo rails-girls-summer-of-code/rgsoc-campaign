@@ -5,7 +5,7 @@ class RatingsController < ApplicationController
   layout 'simple'
 
   def create
-    session[:user_name] = params[:rating][:user_name] unless session[:user_name]
+    session[:user_name] = params[:rating][:user_name] if params[:rating][:user_name]
     rating = find_or_initialize_rating
     rating.update_attributes(params[:rating])
     redirect_to rating.application
