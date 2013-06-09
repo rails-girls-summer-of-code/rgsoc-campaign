@@ -3,6 +3,7 @@ require 'applications/table'
 class ApplicationsController < ApplicationController
   before_filter :require_http_auth
   before_filter :normalize_params, only: :update
+  before_filter :persist_order
 
   layout 'simple'
 
@@ -28,8 +29,12 @@ class ApplicationsController < ApplicationController
 
   private
 
+    def persist_order
+      session[:order] = params[:order] if params[:order]
+    end
+
     def applications_table
-      applications = Application.includes(:ratings).visible.sort_by(params[:order] || :id)
+      applications = Application.includes(:ratings).visible.sort_by(params[:order] || session[:order] || :id)
       Applications::Table.new(Rating.user_names, applications)
     end
 
