@@ -9,5 +9,5 @@ tr class=cycle(:even, :odd)
   td = application.country
   td = application.min_living
   td = application.total_rating
-  = render application.ratings
+  = render partial: 'applications/ratings', collection: row.ratings, as: :rating
   td = application.comment

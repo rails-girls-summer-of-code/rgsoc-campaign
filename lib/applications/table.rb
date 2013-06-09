@@ -8,18 +8,12 @@ module Applications
         @application = application
       end
 
-      def values
-        @values ||= ratings.map(&:value)
-      end
-
-      private
-
-        def ratings
-          @ratings ||= names.map do |name|
-            rating = application.ratings.select { |rating| rating.user_name == name }
-            rating || Rating.new
-          end
+      def ratings
+        @ratings ||= names.map do |name|
+          rating = application.ratings.detect { |rating| rating.user_name == name }
+          rating || Hashr.new(value: '-')
         end
+      end
     end
 
     attr_reader :names, :rows
