@@ -1,11 +1,5 @@
 table
   thead
-    colgroup
-    colgroup
-    colgroup class="student_name"
-    colgroup
-    colgroup class="project_name"
-
     tr
       td #
       td = link_to 'ID', applications_path(order: 'id')
@@ -19,6 +13,8 @@ table
       td = link_to 'Total', applications_path(order: 'total_rating')
       - @applications.names.each do |name|
         td = name
+
+      td Comment
 
   tbody
     = render partial: 'applications/application', collection: @applications.rows, as: :row
