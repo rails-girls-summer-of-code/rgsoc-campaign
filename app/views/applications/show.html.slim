@@ -1,7 +1,7 @@
 .nav
-  = link_to @application.prev ? '&larr; Previous'.html_safe : '', @application.prev, class: 'left'
+  = link_to @prev ? '&larr; Previous'.html_safe : '', @prev, class: 'left'
   = link_to 'Overview', applications_path
-  = link_to @application.next ? 'Next &rarr;'.html_safe : '', @application.next, class: 'right'
+  = link_to @next ? 'Next &rarr;'.html_safe : '', @next, class: 'right'
 
 h1 = @application.student_name
 

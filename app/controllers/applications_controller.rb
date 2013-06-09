@@ -15,6 +15,8 @@ class ApplicationsController < ApplicationController
     @application = Application.find(params[:id])
     @rating = find_or_initialize_rating
     @data = @rating.data
+    @prev = prev_application
+    @next = next_application
   end
 
   def edit
@@ -29,12 +31,19 @@ class ApplicationsController < ApplicationController
 
   private
 
+    def order
+      params[:order] || session[:order] || :id
+    end
+
     def persist_order
       session[:order] = params[:order] if params[:order]
     end
 
+    def applications
+      @applications = Application.includes(:ratings).visible.sort_by(order)
+    end
+
     def applications_table
-      applications = Application.includes(:ratings).visible.sort_by(params[:order] || session[:order] || :id)
       Applications::Table.new(Rating.user_names, applications)
     end
 
@@ -49,5 +58,19 @@ class ApplicationsController < ApplicationController
         value = nil if value == ''
         data.merge(CGI.unescape(key) => value)
       end
+    end
+
+    def prev_application
+      all = applications
+      all = all.reverse if order == :total_rating
+      ix = all.index { |a| a.id == params[:id].to_i }
+      all[ix - 1]
+    end
+
+    def next_application
+      all = applications
+      all = all.reverse if order == :total_rating
+      ix = all.index { |a| a.id == params[:id].to_i }
+      all[ix + 1]
     end
 end

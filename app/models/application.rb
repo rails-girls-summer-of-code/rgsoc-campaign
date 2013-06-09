@@ -25,13 +25,13 @@ class Application < ActiveRecord::Base
   has_many :ratings, order: :user_name
   has_many :comments
 
-  def prev
-    self.class.where('id < ?', id).visible.order(:id).last
-  end
+  # def prev
+  #   self.class.where('id < ?', id).visible.order(:id).last
+  # end
 
-  def next
-    self.class.where('id > ?', id).visible.order(:id).first
-  end
+  # def next
+  #   self.class.where('id > ?', id).visible.order(:id).first
+  # end
 
   def student_name
     data.values[1]
