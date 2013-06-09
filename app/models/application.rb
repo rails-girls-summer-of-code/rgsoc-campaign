@@ -26,7 +26,7 @@ class Application < ActiveRecord::Base
   has_many :comments
 
   def prev
-    self.class.where('id < ?', id).visible.order(:id).first
+    self.class.where('id < ?', id).visible.order(:id).last
   end
 
   def next
