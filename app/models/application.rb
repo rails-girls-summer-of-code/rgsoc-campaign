@@ -52,7 +52,7 @@ class Application < ActiveRecord::Base
     types = { truncated: :mean, weighted: :wma }
     values = ratings.map(&:value).sort
     values.shift && values.pop if type == :truncated
-    values.size > 0 ? values.send(types[type] || type).round_to(2) : 0
+    values.size > 0 ? values.send(types[type] || type).round_to(1) : 0
   rescue
     -1 # wma seems to have issues with less than 2 values
   end

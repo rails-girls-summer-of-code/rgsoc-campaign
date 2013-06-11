@@ -1,24 +1,24 @@
 table
   thead
     tr
-      td #
-      td = link_to 'ID', applications_path(order: 'id')
-      td = link_to 'Student', applications_path(order: 'student_name')
+      th #
+      th = link_to_ordered 'ID', :id
 
-      td = link_to 'Sponsor', applications_path(order: 'sponsor_pick')
-      td = link_to 'Project', applications_path(order: 'project_name')
-      td = link_to 'Country', applications_path(order: 'country')
+      th = link_to_ordered 'Student', :student_name
+      th = link_to_ordered 'Sponsor', :sponsor_pick
+      th = link_to_ordered 'Project', :project_name
+      th = link_to_ordered 'Country', :country
 
-      td = link_to 'Mean', applications_path(order: 'mean')
-      td = link_to 'Medium', applications_path(order: 'median')
-      td = link_to 'Weighted', applications_path(order: 'weighted')
-      td = link_to "Trunc'ed", applications_path(order: 'truncated')
+      th = link_to_ordered 'Mean', :mean
+      th = link_to_ordered 'Median', :median
+      th = link_to_ordered 'Weighted', :weighted
+      th = link_to_ordered "Trunc'ed", :truncated
 
       - @applications.names.each do |name|
-        td = name
+        th = name
 
-      td = link_to 'Money', applications_path(order: 'min_living')
-      td Comment
+      th = link_to_ordered 'Money', :min_living
+      th Comment
 
   tbody
     = render partial: 'applications/application', collection: @applications.rows, as: :row
