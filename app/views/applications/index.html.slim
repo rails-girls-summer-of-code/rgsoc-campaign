@@ -9,7 +9,11 @@ table
       td = link_to 'Project', applications_path(order: 'project_name')
       td = link_to 'Country', applications_path(order: 'country')
 
-      td = link_to 'Total', applications_path(order: 'total_rating')
+      td = link_to 'Mean', applications_path(order: 'mean')
+      td = link_to 'Medium', applications_path(order: 'median')
+      td = link_to 'Weighted', applications_path(order: 'weighted')
+      td = link_to "Trunc'ed", applications_path(order: 'truncated')
+
       - @applications.names.each do |name|
         td = name
 

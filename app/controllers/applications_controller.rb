@@ -36,6 +36,7 @@ class ApplicationsController < ApplicationController
     end
 
     def persist_order
+      session[:order] = :mean if session[:order] == 'total_rating'
       session[:order] = params[:order] if params[:order]
     end
 
@@ -62,14 +63,14 @@ class ApplicationsController < ApplicationController
 
     def prev_application
       all = applications
-      all = all.reverse if order == :total_rating
+      all = all.reverse if [:mean, :median, :weighted, :truncated].include?(order)
       ix = all.index { |a| a.id == params[:id].to_i }
       all[ix - 1]
     end
 
     def next_application
       all = applications
-      all = all.reverse if order == :total_rating
+      all = all.reverse if [:mean, :median, :weighted, :truncated].include?(order)
       ix = all.index { |a| a.id == params[:id].to_i }
       all[ix + 1]
     end

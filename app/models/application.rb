@@ -1,4 +1,5 @@
 require 'applications/importer'
+require 'simple_statistics'
 
 class Application < ActiveRecord::Base
   class << self
@@ -12,8 +13,11 @@ class Application < ActiveRecord::Base
 
     def sort_by(column)
       column = column.to_sym
-      sorted = column == :id ? order(column) : all.sort_by(&column)
-      sorted = sorted.reverse if column == :total_rating
+      sorted = if [:mean, :median, :weighted, :truncated].include?(column)
+        all.sort_by { |application| application.total_rating(column) }.reverse
+      else
+        column == :id ? order(column) : all.sort_by(&column)
+      end
       sorted
     end
   end
@@ -37,12 +41,20 @@ class Application < ActiveRecord::Base
     data.values[1]
   end
 
-  def total_rating
-    values = ratings.map(&:value)
-    total = values.length > 0 ? (values.sum / values.length).round(2) : 0
+  def total_rating(type)
+    total = calc_rating(type)
     total += SPONSOR_PICK if sponsor_pick?
     total += project_visibility.to_i unless project_visibility.blank?
     total
+  end
+
+  def calc_rating(type)
+    types = { truncated: :mean, weighted: :wma }
+    values = ratings.map(&:value).sort
+    values.shift && values.pop if type == :truncated
+    values.size > 0 ? values.send(types[type] || type).round_to(2) : 0
+  rescue
+    -1 # wma seems to have issues with less than 2 values
   end
 
   def rating_defaults
