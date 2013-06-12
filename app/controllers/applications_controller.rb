@@ -5,7 +5,8 @@ class ApplicationsController < ApplicationController
   before_filter :normalize_params, only: :update
   before_filter :persist_order
 
-  layout 'simple'
+  # layout 'simple'
+  layout false
 
   def index
     @applications = applications_table
@@ -41,12 +42,16 @@ class ApplicationsController < ApplicationController
       session[:order] = params[:order] if params[:order]
     end
 
+    def exclude
+      (params[:exclude] || session[:exclude] || '').split(',').map(&:strip)
+    end
+
     def applications
       @applications = Application.includes(:ratings).visible.sort_by(order)
     end
 
     def applications_table
-      Applications::Table.new(Rating.user_names, applications)
+      Applications::Table.new(Rating.user_names, applications, exclude: exclude)
     end
 
     def find_or_initialize_rating

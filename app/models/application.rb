@@ -26,7 +26,11 @@ class Application < ActiveRecord::Base
 
   serialize :data
 
-  has_many :ratings, order: :user_name
+  has_many :ratings, order: :user_name do
+    def excluding(names)
+      where('user_name NOT IN (?)', names)
+    end
+  end
   has_many :comments
 
   # def prev

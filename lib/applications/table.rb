@@ -1,16 +1,19 @@
 module Applications
   class Table
     class Row
-      attr_reader :names, :application
+      attr_reader :names, :application, :options
 
-      def initialize(names, application)
+      def initialize(names, application, options)
         @names = names
         @application = application
+        @options = options
       end
 
       def ratings
         @ratings ||= names.map do |name|
-          rating = application.ratings.detect { |rating| rating.user_name == name }
+          ratings = application.ratings
+          # ratings = ratings.excluding(options[:exclude]) unless options[:exclude].blank?
+          rating = ratings.detect { |rating| rating.user_name == name }
           rating || Hashr.new(value: '-')
         end
       end
@@ -18,9 +21,9 @@ module Applications
 
     attr_reader :names, :rows
 
-    def initialize(names, applications)
+    def initialize(names, applications, options)
       @names = names
-      @rows = applications.map { |application| Row.new(names, application) }
+      @rows = applications.map { |application| Row.new(names, application, options) }
     end
   end
 end
