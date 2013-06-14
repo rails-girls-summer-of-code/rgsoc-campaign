@@ -5,8 +5,7 @@ class ApplicationsController < ApplicationController
   before_filter :normalize_params, only: :update
   before_filter :persist_order
 
-  # layout 'simple'
-  layout false
+  layout 'simple'
 
   def index
     @applications = applications_table
