@@ -1,12 +1,11 @@
 require 'geo_ip'
 
 Rgsoc::Application.routes.draw do
-  match 'foo', to: 'applications#foo'
-
   resources :applications
   resources :applications_imports
   resources :ratings
   resources :comments
+  resources :coaches, only: :index
 
   resources :donations do
     post 'checkout', on: :collection
