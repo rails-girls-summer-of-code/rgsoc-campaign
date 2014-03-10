@@ -1,7 +1,7 @@
 section class="main container"
     div class="wrapper clearfix"
         article class="content"
-            h2 Wow, thank you!
+            h2 Thank you!
             p
               - if false && subscription?
                 | You have just ordered the subscription <em>"#{donation.package.name}"</em> which means you are donating <em>#{number_to_currency donation.amount_in_dollars}</em> per month to Travis CI (until you cancel the subscription).
@@ -14,77 +14,15 @@ section class="main container"
 
             #sociallinks
               h3 Please help spread the word!
-              p They say the number one reason for people to donate is that they have been asked :-)
-              p So, please help spread the word and ask friends, colleagues your company to support RailsGirls Summer of Code!
+              p They say the number one reason for people to donate is that they have been inspired by others.
+              p Please help spread the word and ask friends, colleagues or your company to support Rails Girls Summer of Code!
+              p Share your donation:
               div
-                a.twitter-share-button data-count="vertical" data-text="I have just donated to RailsGirls Summer of Code and so should you!" data-url="http://railsgirlssummerofcode.org/campaign" Tweet
+                a.twitter-share-button data-count="vertical" data-text="I have just donated to RailsGirls Summer of Code and so should you! #rgsoc" data-url="http://railsgirlssummerofcode.org/campaign" Tweet
                 div.g-plusone data-size="tall" data-href="http://railsgirlssummerofcode.org/campaign"
                 div.fb-like data-send="false" data-layout="box_count" data-width="50" data-href="http://railsgirlssummerofcode.org/campaign"
             #fb-root
-        table.rails-girls-love
-          tr
-            td
-            td
-              img src='/assets/rails-girls.gif'
-            td
-              img src='/assets/rails-girls.gif'
-            td
-            td
-              img src='/assets/rails-girls.gif'
-            td
-              img src='/assets/rails-girls.gif'
-            td
-          tr
-            td
-              img src='/assets/rails-girls.gif'
-            td
-            td
-            td
-              img src='/assets/rails-girls.gif'
-            td
-            td
-            td
-              img src='/assets/rails-girls.gif'
-          tr
-            td
-              img src='/assets/rails-girls.gif'
-            td
-            td
-            td
-            td
-            td
-            td
-              img src='/assets/rails-girls.gif'
-          tr
-            td
-            td
-              img src='/assets/rails-girls.gif'
-            td
-            td
-            td
-            td
-              img src='/assets/rails-girls.gif'
-            td
-          tr
-            td
-            td
-            td
-              img src='/assets/rails-girls.gif'
-            td
-            td
-              img src='/assets/rails-girls.gif'
-            td
-            td
-          tr
-            td
-            td
-            td
-            td
-              img src='/assets/rails-girls.gif'
-            td
-            td
-            td
-
+        
 
 script
   | (function(d, s) {
