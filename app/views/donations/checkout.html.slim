@@ -8,9 +8,9 @@ section class="main container"
 
         h2 RailsGirls Summer of Code
 
-        p You are about to donate #{format_donation(donation)} to the RailsGirls Summer of Code.
+        p You are about to donate #{format_donation(donation)} to the Rails Girls Summer of Code.
 
-        p That is amazing! Thank you so much, we love you :)
+        p Which is... amazing! Thank you so much.
 
         - if donation.errors[:base].any?
           .application-error
@@ -20,14 +20,14 @@ section class="main container"
         - if company?
           #address
             h3 About you
-            p We'd love to list you on the crowdfunding page. Please provide some info about you.
+            p We'd love to list you on the crowdfunding page. Please provide us with some information about your company:
             fieldset
               = f.input :name, required: true
               = f.input :twitter_handle, label: 'Twitter', hint: 'Your Twitter handle', input_html: { placeholder: '@' }
               = f.input :github_handle,  label: 'Github',  hint: 'Your Github handle'
               = f.input :homepage, input_html: { placeholder: 'http://' }
               = f.input :comment, as: :string
-            p Please provide your address so we can email you a billing receipt.
+            p Please provide your address so we can send you an email with a billing receipt.
             fieldset
               = f.input :email, required: true
               = f.input :address, required: true
@@ -39,7 +39,7 @@ section class="main container"
         - else
           #user
             h3 About you
-            p We'd love to list you on the crowdfunding page. Please provide some info about you.
+            p We'd love to list you on the crowdfunding page. Please provide us with some information about you:
             fieldset
               = f.input :name
               = f.input :email, required: true
@@ -73,7 +73,7 @@ section class="main container"
 
         ul.footnotes
           li
-            | As far as we know contributions and payments to the RailsGirls Summer of
+            | As far as we know contributions and payments to the Rails Girls Summer of
               Code are not deductible as charitable contributions for federal income
               tax purposes. However, they may be deductible under other provisions of
               the Internal Revenue Code (for US) or your local tax authority's advice.
