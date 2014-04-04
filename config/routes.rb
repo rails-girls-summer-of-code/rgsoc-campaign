@@ -1,6 +1,8 @@
 require 'geo_ip'
 
 Rgsoc::Application.routes.draw do
+
+  root to: 'static#index'
   resources :applications
   resources :applications_imports
   resources :ratings
