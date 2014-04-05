@@ -37,7 +37,9 @@ module Applications
 
     def run
       data.each do |row|
-        create(row) if row.first && !find(row)
+        next unless row.first
+        record = find(row)
+        record ? update(record, row) : create(row)
       end
     end
 
