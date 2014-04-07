@@ -1,12 +1,12 @@
 require 'spec_helper'
-require 'applications_importer'
+require 'applications/importer'
 
-describe ApplicationsImporter do
+describe Applications::Importer do
   let(:data) { "Timestamp,Student Name,Student E-mail Address,how much money\n1,2,3\n4,5,6" }
   subject { importer(data) }
 
   def importer(data)
-    ApplicationsImporter.new(Application, data)
+    Applications::Importer.new(Application, data)
   end
 
   before :each do
