@@ -27,6 +27,10 @@ class Donation < ActiveRecord::Base
     end
   end
 
+  def anonymous?
+    name.empty?
+  end
+
   def hide
     !display
   end
@@ -75,12 +79,14 @@ class Donation < ActiveRecord::Base
   end
 
   # ANONYMOUS  = { name: 'Anonymous', twitter_handle: '', github_handle: '', homepage: '', comment: '' }
-  JSON_ATTRS = [:package, :name, :twitter_handle, :github_handle, :homepage, :comment, :created_at]
+  ATTRS_ANONYMOUS     = [:package, :comment, :created_at]
+  ATTRS_NON_ANONYMOUS = [:name, :twitter_handle, :github_handle, :homepage, :gravatar_url]
 
   def as_json(options = {})
-    json = super(only: JSON_ATTRS)
+    attrs = ATTRS_ANONYMOUS
+    attrs = attrs + ATTRS_NON_ANONYMOUS unless anonymous?
+    json = super(only: attrs)
     json.update(amount: amount_in_dollars) if display?
-    json.update(gravatar_url: gravatar_url)
     json
   end
 
