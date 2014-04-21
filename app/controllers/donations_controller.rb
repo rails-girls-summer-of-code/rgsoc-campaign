@@ -35,10 +35,12 @@ class DonationsController < ApplicationController
   end
 
   def show
+    @show_givie = !!params["givie"] 
     render :confirm_creation
   end
 
   def confirm
+    @show_givie =  !!params["givie"]
     render :confirm_creation
   end
 
