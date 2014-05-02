@@ -19,7 +19,7 @@ describe GivieHelper do
   end
 
   it "matches a givie pingback url" do
-    expect(generated_url).to match(/http:\/\/givie.com\/pingback\?data=\w+/)
+    expect(generated_url).to match(/http:\/\/www.givie.io\/pingback\?data=\w+/)
   end
 
   it "passes donation info as encrypted param" do
