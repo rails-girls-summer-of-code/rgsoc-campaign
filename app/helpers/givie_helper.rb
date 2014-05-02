@@ -12,6 +12,6 @@ module GivieHelper
       homepage: donation.homepage,
     }.to_json)
 
-    "#{ENV['GIVIE_BASE_URL']}/pingback?data=" + data
+    "http://www.givie.io/pingback?data=" + data
   end
 end

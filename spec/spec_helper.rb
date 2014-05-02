@@ -46,3 +46,5 @@ def stub_stripe_methods
   Donation.any_instance.stub(:stripe_create_charge)
 end
 
+ENV['GIVIE_SECRET']="this is the testing secret. it is not very secret"
+
