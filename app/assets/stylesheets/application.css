@@ -463,20 +463,17 @@
   /* ==========================================================================
      Donations
      ========================================================================== */
-  #sociallinks {
-    margin: 50px 0 126px 0;
-  }
-  #sociallinks div {
-    margin-top: 1em;
-  }
-  #sociallinks iframe {
-    margin-right: 2em;
-  }
-  #sociallinks img {
-	margin: 2em 2em 4em 2em;
+  #sociallinks td {
+    border: none;
+
   }
   .fb-like {
-    margin-left: 2em;
+    margin-top: -0.5em;
+    padding-left: 0.2em;
+  }
+  .givie-logo{
+    margin-top: -0.3em;
+    display: inline-block;
   }
 
   .simple_form input, .simple_form textarea {
