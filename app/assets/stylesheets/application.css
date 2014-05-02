@@ -472,6 +472,9 @@
   #sociallinks iframe {
     margin-right: 2em;
   }
+  #sociallinks img {
+	margin: 2em 2em 4em 2em;
+  }
   .fb-like {
     margin-left: 2em;
   }
