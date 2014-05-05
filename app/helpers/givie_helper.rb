@@ -1,8 +1,8 @@
 module GivieHelper
 
-  def givie_url(donation)
+  def encrypted_givie_params(donation)
     crypt = ActiveSupport::MessageEncryptor.new(ENV['GIVIE_SECRET'])
-    data = crypt.encrypt_and_sign({
+    crypt.encrypt_and_sign({
       uid: donation.id.to_s,
       name: donation.name,
       message: donation.comment,
@@ -11,7 +11,5 @@ module GivieHelper
       gravatar: donation.gravatar_url,
       homepage: donation.homepage,
     }.to_json)
-
-    "http://www.givie.io/pingback?data=" + data
   end
 end
