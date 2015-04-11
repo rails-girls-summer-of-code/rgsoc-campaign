@@ -86,6 +86,7 @@ class Donation < ActiveRecord::Base
     attrs = ATTRS_ANONYMOUS
     attrs = attrs + ATTRS_NON_ANONYMOUS unless anonymous?
     json = super(only: attrs)
+    json.update(cc: !!stripe_customer_id)
     json.update(amount: amount_in_dollars) if display?
     json
   end
