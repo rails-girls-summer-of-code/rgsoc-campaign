@@ -14,12 +14,10 @@ gem 'simple_statistics'
 
 group :development do
   gem 'quiet_assets'
-  gem 'sqlite3'
   gem 'thin'
 end
 
 group :test do
-  gem 'sqlite3'
   gem 'capybara'
   gem 'rake' # for Travis <3
 end
@@ -31,6 +29,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'sqlite3'
 end
 
 group :assets do
