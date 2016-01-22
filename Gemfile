@@ -11,6 +11,7 @@ gem 'country_select'
 gem 'gravatar-ultimate'
 gem 'hashr'
 gem 'simple_statistics'
+gem 'rollbar', '~> 2.7.1'
 
 group :development do
   gem 'quiet_assets'
