@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.2.3'
+
 gem 'rails', '3.2.13'
 
 gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
