@@ -14,7 +14,7 @@ describe Applications::Importer do
   end
 
   it 'imports applications' do
-    -> { subject.run }.should change(Application, :count).by(2)
+    expect { subject.run }.to change(Application, :count).by(2)
   end
 
   describe 'when updating an existing application' do
@@ -23,12 +23,12 @@ describe Applications::Importer do
     end
 
     it 'does not add a new record' do
-      -> { subject.run }.should_not change(Application, :count)
+      expect { subject.run }.not_to change(Application, :count)
     end
 
     it 'actually updates the record' do
       importer(data.gsub('2', '8')).run
-      Application.first.data['Student Name'].should == '8'
+      expect(Application.first.data['Student Name']).to eq('8')
     end
   end
 end

@@ -24,16 +24,16 @@ describe 'donating', type: 'feature' do
 
 
     it 'displays the donate now button on the page' do
-      page.body.should have_content /donate/i
+      expect(page.body).to have_content /donate/i
     end
 
     it 'displays your donation amount on the page' do
-      page.body.should have_content "#{params[:donation][:amount]/100}.00"
+      expect(page.body).to have_content "#{params[:donation][:amount]/100}.00"
     end
 
     it 'should have the new donation form' do
       FORM_FIELDS.each do |field_name|
-        page.body.should have_field 'donation[' + field_name + ']'
+        expect(page.body).to have_field 'donation[' + field_name + ']'
       end
     end
   end
@@ -44,7 +44,7 @@ describe 'donating', type: 'feature' do
     end
 
     it 'thanks the donor' do
-      page.body.should have_content /thank you/i
+      expect(page.body).to have_content /thank you/i
     end
   end
 
