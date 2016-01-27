@@ -21,7 +21,7 @@ end
 group :test do
   gem 'capybara'
   gem 'rake' # for Travis <3
-  gem 'test-unit' # TODO: Remove me after upgrading to rspec 3+
+  gem 'test-unit' # TODO: Remove me after upgrading to Rails 4
 end
 
 group :production do
@@ -30,7 +30,7 @@ group :production do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '< 3'
+  gem 'rspec-rails'
   gem 'sqlite3'
 end
 
