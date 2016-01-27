@@ -13,12 +13,12 @@ describe DonationsController do
   describe 'POST #create' do
     it 'does not display donations when the hide checkbox was checked' do
       post :create, params.merge({'donation' => {'hide'=> '1'}})
-      assigns(:donation).display.should be_false
+      expect(assigns(:donation).display).to be_falsey
     end
 
     it 'does display donations when the hide checkbox was not checked' do
       post :create, params['donation'].merge({'donation' => {'hide'=> '0'}})
-      assigns(:donation).display.should be_true
+      expect(assigns(:donation).display).to be_truthy
     end
   end
 
