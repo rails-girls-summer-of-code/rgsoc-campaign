@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.3'
 
-gem 'rails', '~> 3.2.13'
+gem 'rails', '~> 4.2'
 
 gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 gem 'slim'
@@ -13,6 +13,10 @@ gem 'hashr'
 gem 'simple_statistics'
 gem 'rollbar', '~> 2.7.1'
 
+# for attr_accessible
+# TODO: This gem won't be updated for Rails 5, so any usage of attr_accessible must be updated before upgrading
+gem 'protected_attributes'
+
 group :development do
   gem 'quiet_assets'
   gem 'thin'
@@ -21,7 +25,6 @@ end
 group :test do
   gem 'capybara'
   gem 'rake' # for Travis <3
-  gem 'test-unit' # TODO: Remove me after upgrading to Rails 4
 end
 
 group :production do
@@ -35,9 +38,9 @@ group :development, :test do
 end
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
 end
 
 gem 'jquery-rails'
