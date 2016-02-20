@@ -26,7 +26,7 @@ class Application < ActiveRecord::Base
 
   serialize :data
 
-  has_many :ratings, order: :user_name do
+  has_many :ratings, -> { order(user_name: :asc) } do
     def excluding(names)
       where('user_name NOT IN (?)', names)
     end
