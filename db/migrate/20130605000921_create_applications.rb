@@ -8,7 +8,7 @@ class CreateApplications < ActiveRecord::Migration
       t.string :pair_email
       t.string :living_costs
       t.text   :data
-      t.timestamps
+      t.timestamps null: true
     end
 
     add_index :applications, :timestamp

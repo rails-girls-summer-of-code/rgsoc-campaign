@@ -5,7 +5,7 @@ class CreateRatings < ActiveRecord::Migration
       t.string :user_name
       t.text :data
 
-      t.timestamps
+      t.timestamps null: true
     end
   end
 end
