@@ -6,4 +6,4 @@ before_script:
 notifications:
   email:
     - me@svenfuchs.com
-    - tobias.pfeiffer@student.hpi.uni-potsdam.de
+    - laura@railsgirlssummerofcode.org
