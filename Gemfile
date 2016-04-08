@@ -21,7 +21,6 @@ end
 group :test do
   gem 'capybara'
   gem 'rake' # for Travis <3
-  gem 'test-unit' # TODO: Remove me after upgrading to Rails 4
 end
 
 group :production do
@@ -41,3 +40,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+# Needs to be available on Hoerku for running `rails console`
+# TODO: Remove me after upgrading to Rails 4
+gem 'test-unit'
