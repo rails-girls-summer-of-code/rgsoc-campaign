@@ -1,6 +1,6 @@
 require 'geo_ip'
 
-Rgsoc::Application.routes.draw do
+Rails.application.routes.draw do
 
   root to: 'static#index'
   resources :applications
@@ -16,6 +16,6 @@ Rgsoc::Application.routes.draw do
     get 'confirm',   on: :member
   end
 
-  match 'donations.json', to: 'orders#index', as: :donors
-  match 'geo_ip.json', to: GeoIP.new
+  get 'donations.json', to: 'orders#index', as: :donors
+  get 'geo_ip.json', to: GeoIP.new
 end

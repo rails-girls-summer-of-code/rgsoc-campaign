@@ -24,7 +24,7 @@ class CreateDonations < ActiveRecord::Migration
 
       t.boolean :display, :default => true
 
-      t.timestamps
+      t.timestamps null: true
     end
   end
 end
