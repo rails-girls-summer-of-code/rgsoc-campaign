@@ -10,7 +10,7 @@ class Donation < ActiveRecord::Base
       sum(:amount).to_f / 100
     end
 
-    def stats
+    astats
       { total: connection.select_value('SELECT SUM(amount) FROM donations') }
     end
 
@@ -48,7 +48,7 @@ class Donation < ActiveRecord::Base
   end
 
   def gravatar_url
-    super || Gravatar.new(email || '').image_url
+    super || Gravatar.new(email || '').image_url(ssl: true)
   end
 
   def vat
