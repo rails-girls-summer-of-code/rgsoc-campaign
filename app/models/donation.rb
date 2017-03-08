@@ -10,7 +10,7 @@ class Donation < ActiveRecord::Base
       sum(:amount).to_f / 100
     end
 
-    astats
+    def stats
       { total: connection.select_value('SELECT SUM(amount) FROM donations') }
     end
 
