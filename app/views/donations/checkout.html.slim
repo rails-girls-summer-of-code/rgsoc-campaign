@@ -6,11 +6,9 @@ section class="main container"
         = f.hidden_field :amount
         = f.hidden_field :stripe_card_token
 
-        h2 Rails Girls Summer of Code
+        h2 Confirm your donation
 
-        p You are about to donate #{format_donation(donation)} to the Rails Girls Summer of Code.
-
-        p Which is... amazing! Thank you so much.
+        p You are about to donate #{format_donation(donation)} to Rails Girls Summer of Code.
 
         - if donation.errors[:base].any?
           .application-error
@@ -20,14 +18,14 @@ section class="main container"
         - if company?
           #address
             h3 About you
-            p We'd love to list you on the crowdfunding page. Please provide us with some information about your company:
+            p We'd love to list you on our crowdfunding page. Please fill out the form below with information about your company:
             fieldset
               = f.input :name, required: true
               = f.input :twitter_handle, label: 'Twitter', hint: 'Your Twitter handle', input_html: { placeholder: '@' }
               = f.input :github_handle,  label: 'Github',  hint: 'Your Github handle'
               = f.input :homepage, input_html: { placeholder: 'http://' }
               = f.input :comment, as: :string
-            p Please provide your address so we can send you an email with a billing receipt.
+            p Please provide your company's billing address so we can send you an email with a billing receipt.
             fieldset
               = f.input :email, required: true
               = f.input :address, required: true
@@ -39,7 +37,7 @@ section class="main container"
         - else
           #user
             h3 About you
-            p We'd love to list you on the crowdfunding page. Please provide us with some information about you:
+            p We'd love to list you on our crowdfunding page. Please fill out the form below with information about you:
             fieldset
               = f.input :name
               = f.input :email, required: true
@@ -48,7 +46,7 @@ section class="main container"
               = f.input :homepage, input_html: { placeholder: 'http://' }
               = f.input :comment, as: :string
               = f.input :hide, as: :boolean, label: 'Hide amount?', input_html: { class: 'inline' }
-            p.note If you leave these fields empty, we will list the donation as anonymous. If you tick "Hide amount?", we won't display the amount. We won't display the email address, but show your <a href="http://gravatar.com">Gravatar</a>.
+            p.note If you leave the above fields empty, we will list the donation as anonymous. If you tick "Hide amount?", we won't display the amount. Your email address will <strong>not</strong> be displayed on our site, but we will show your <a href="http://gravatar.com">Gravatar</a>.
 
         - if needs_vat?
           = f.hidden_field :add_vat, value: false
@@ -73,7 +71,7 @@ section class="main container"
 
         ul.footnotes
           li
-            | As far as we know contributions and payments to the Rails Girls Summer of
+            | As far as we know contributions and payments to Rails Girls Summer of
               Code are not deductible as charitable contributions for federal income
               tax purposes. However, they may be deductible under other provisions of
               the Internal Revenue Code (for US) or your local tax authority's advice.
