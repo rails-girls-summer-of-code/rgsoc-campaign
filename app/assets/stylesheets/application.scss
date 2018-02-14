@@ -190,7 +190,7 @@
  .footer-container { min-height: 10em; padding-bottom: 1em; padding-top: 2em; clear: both; }
  .footer-container .nav-meta a { color: white; font-weight: normal; text-decoration: none }
  .footer-container .nav-meta a:hover { text-decoration: underline; }
- .footer-container .wrapper {position: relative; min-height: 20em;}
+ .footer-container .wrapper {position: relative; min-height: 15em;}
 
  a.button, .simple_form input[type="submit"]{
    display: inline-block;
@@ -288,6 +288,7 @@
  .footer-container footer {
    color: white;
    padding-top: 1em;
+   font-size: 0.8em;
  }
  .footer-container footer a {
    color: white;
