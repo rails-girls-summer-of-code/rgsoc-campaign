@@ -1,21 +1,18 @@
 section class="main container"
     div class="wrapper clearfix"
         article class="content"
-            h2 Thank you!
+            h2 Thank you for your donation!
             p
               - if false && subscription?
                 | You have just ordered the subscription <em>"#{donation.package.name}"</em> which means you are donating <em>#{number_to_currency donation.amount_in_dollars}</em> per month to Travis CI (until you cancel the subscription).
               - else
-                | You have just donated <em>#{number_to_currency donation.amount_in_dollars}</em> to RailsGirls Summer of Code.
-
-            p We can't express how much we appreciate your support.
-
-            h4 Thank you so much!
+                | You have just donated <em>#{number_to_currency donation.amount_in_dollars}</em> to Rails Girls Summer of Code.
+              
+              br We can't express how much we appreciate your support.
 
             #sociallinks
               h3 Please help spread the word!
-              p They say the number one reason for people to donate is that they have been inspired by others.
-              p Please help spread the word and ask friends, colleagues or your company to support Rails Girls Summer of Code!
+              p They say the number one reason for people to donate is that they have been inspired by others. Please help spread the word and ask friends, colleagues or your company to support Rails Girls Summer of Code!
               p Share your donation:
               table
                 tr
