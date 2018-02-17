@@ -13,8 +13,9 @@ describe GivieHelper do
       homepage: "http://www.foo.bar"
     })
   }
+
   before do
-    ENV['GIVIE_SECRET'] = "kitten sandwich is a strange project name"
+    ENV['GIVIE_SECRET'] = "77a115a459b0499bd8719d5143113fe1"
   end
 
   it "passes donation info as encrypted param" do
