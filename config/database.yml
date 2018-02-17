@@ -1,14 +1,13 @@
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
-  pool: 5
-  timeout: 5000
+  adapter: postgresql
+  database: rgsoc_campaign_development
+  host: localhost
 
 test:
-  adapter: sqlite3
-  database: db/test.sqlite3
-  pool: 5
-  timeout: 5000
+  adapter: postgresql
+  database: rgsoc_campaign_test
+  host: localhost
+  min_messages: error
 
 production:
   adapter: postgresql
