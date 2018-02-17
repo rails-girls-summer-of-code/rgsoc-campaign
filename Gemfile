@@ -4,13 +4,13 @@ ruby '2.5.0'
 
 gem 'rails', '~> 4.2'
 
-gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
+gem 'stripe'
 gem 'slim'
 gem 'simple_form'
 gem 'country_select'
 gem 'hashr'
 gem 'simple_statistics'
-gem 'rollbar', '~> 2.7.1'
+gem 'rollbar'
 gem 'puma'
 
 # for attr_accessible
