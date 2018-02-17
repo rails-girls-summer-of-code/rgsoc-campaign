@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.3'
+ruby '2.5.0'
 
 gem 'rails', '~> 4.2'
 
@@ -12,6 +12,7 @@ gem 'gravatar-ultimate'
 gem 'hashr'
 gem 'simple_statistics'
 gem 'rollbar', '~> 2.7.1'
+gem 'puma'
 
 # for attr_accessible
 # TODO: This gem won't be updated for Rails 5, so any usage of attr_accessible must be updated before upgrading
@@ -19,7 +20,6 @@ gem 'protected_attributes'
 
 group :development do
   gem 'quiet_assets'
-  gem 'thin'
 end
 
 group :test do
@@ -29,7 +29,6 @@ end
 
 group :production do
   gem 'pg'
-  gem 'unicorn'
 end
 
 group :development, :test do
@@ -42,7 +41,3 @@ gem 'coffee-rails'
 gem 'uglifier'
 
 gem 'jquery-rails'
-
-# Needs to be available on Hoerku for running `rails console`
-# TODO: Remove me after upgrading to Rails 4
-gem 'test-unit'
