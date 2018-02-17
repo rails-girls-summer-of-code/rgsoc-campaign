@@ -6,7 +6,7 @@ before_install:
   - gem update --system
   - gem --version
 before_script:
-  - RAILS_ENV=test bundle exec rails db:create db:schema:load
+  - RAILS_ENV=test bundle exec rake db:create db:schema:load
 notifications:
   email:
     - me@svenfuchs.com
