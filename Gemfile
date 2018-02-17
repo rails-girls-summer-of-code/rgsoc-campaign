@@ -10,7 +10,7 @@ gem 'simple_form'
 gem 'country_select'
 gem 'hashr'
 gem 'simple_statistics'
-gem 'rollbar'
+gem 'sentry-raven'
 gem 'puma'
 
 # for attr_accessible
