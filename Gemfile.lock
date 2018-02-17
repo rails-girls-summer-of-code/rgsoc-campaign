@@ -78,9 +78,6 @@ GEM
     ffi (1.9.21)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    gravatar-ultimate (2.0.0)
-      activesupport (>= 2.3.14)
-      rack
     hashr (2.0.1)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
@@ -208,7 +205,6 @@ DEPENDENCIES
   capybara
   coffee-rails
   country_select
-  gravatar-ultimate
   hashr
   jquery-rails
   pg
