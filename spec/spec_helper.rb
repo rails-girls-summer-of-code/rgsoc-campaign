@@ -56,5 +56,5 @@ def stub_stripe_methods
   allow_any_instance_of(Donation).to receive(:stripe_create_charge)
 end
 
-ENV['GIVIE_SECRET'] = "2d2dd11b2d4d9c55a38db15ff40ee826"
+ENV['GIVIE_SECRET'] = "this is the testing secret. it i"
 

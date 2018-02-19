@@ -15,7 +15,7 @@ describe GivieHelper do
   }
 
   before do
-    ENV['GIVIE_SECRET'] = "77a115a459b0499bd8719d5143113fe1"
+    ENV['GIVIE_SECRET'] = "kitten sandwich is a strange pro"
   end
 
   it "passes donation info as encrypted param" do
