@@ -1,3 +1,6 @@
+# This is a drop-in replacement from the gravatar-ultimate gem
+# https://github.com/sinisterchipmunk/gravatar
+
 class Gravatar
   attr_reader :email
 
