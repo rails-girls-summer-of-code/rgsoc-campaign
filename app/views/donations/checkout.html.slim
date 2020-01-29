@@ -8,7 +8,7 @@ section class="main container"
 
         h2 Please confirm your donation
 
-        p You are about to donate #{format_donation(donation)} to Rails Girls Summer of Code and directly help more women and non-binary people get into open source.
+        p You are about to donate #{format_donation(donation)} to Rails Girls Summer of Code and directly help more female and non-binary coders get into open source.
           Please complete the following form and click the 'Donate now' button to confirm your donation. Thank you
 
         - if donation.errors[:base].any?
@@ -19,7 +19,7 @@ section class="main container"
         - if company?
           #address
             h3 About you
-            p We like to publicly thank everyone who sponsors rgsoc and for this reason we would really like to list your contribution on our crowdfunding page. If you're happy with this, please fill out the form below with information about your company:
+            p We like to publicly thank everyone who sponsors RGSoC and for this reason we would really like to list your contribution on our crowdfunding page. If you're happy with this, please fill out the form below with information about your company:
             fieldset
               = f.input :name, required: true
               = f.input :twitter_handle, label: 'Twitter', hint: 'Your Twitter handle', input_html: { placeholder: '@' }
@@ -38,7 +38,7 @@ section class="main container"
         - else
           #user
             h3 About you
-            p We like to publicly thank everyone who sponsors rgsoc and for this reason we would really like to list your contribution on our crowdfunding page. If you are happy with this, please fill out the form below:
+            p We like to publicly thank everyone who sponsors RGSoC and for this reason we would really like to list your contribution on our crowdfunding page. If you are happy with this, please fill out the form below:
             fieldset
               = f.input :name
               = f.input :email, required: true
