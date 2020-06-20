@@ -1,5 +1,4 @@
 require 'csv'
-require 'gravatar-ultimate'
 
 class Donation < ActiveRecord::Base
   attr_accessible :stripe_card_token, :stripe_customer_id, :package, :amount, :vat_id, :add_vat, :display, :hide,
